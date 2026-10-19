@@ -64,16 +64,14 @@ set www-ssl disabled=yes
 
 ### 2. Reglas de Firewall para el plano de control (`input`)
 
-**Las reglas del firewall se evalúan de arriba hacia abajo, una a una**. Cuando un paquete coincide con una regla que tiene una acción definitiva (accept, drop, reject), el proceso se detiene y no se siguen evaluando más reglas.
-
-
+**Las reglas del firewall se evalúan de arriba hacia abajo, una a una**. Cuando un paquete coincide con una regla que tiene una acción definitiva (`accept`, `drop`, `reject`), el proceso se detiene y no se siguen evaluando más reglas.
 
 En casi todos los rúters/firewalls verás algo parecido a:
 ```routeros
 accept established
 accept related
 drop invalid
-````
+```
 #### ¿Qué significa established?
 
 "Es una conversación ya iniciada." Sin esta regla cada paquete (cada vez que haces clic en winbox por ejemplo) tendría que recorrer todas las reglas del firewall.
@@ -81,8 +79,6 @@ drop invalid
 #### ¿Qué significa related?
 
 "Es una conversación secundaria derivada de otra." Son conexiones nuevas, pero que están relacionadas con otra ya existente.
-
-
 
 #### ¿Qué significa invalid?
 
