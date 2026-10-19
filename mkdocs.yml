@@ -1,19 +1,37 @@
 site_name: Apuntes FP Informática
+site_description: Apuntes, laboratorios y recursos para Formación Profesional y CETI
+site_author: Paco Cuadrado
 
 theme:
   name: material
   language: es
 
-nav:
-  - Inicio: index.md
+features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.highlight
 
-  - IA:
+palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+
+    - scheme: slate
+      primary: indigo
+      accent: blue
+
+nav:
+  - 🏠 Inicio: index.md
+
+  - 🤖 IA:
       - OpenAI: AI/OpenAI-1-el-incidente.md
       - Técnicas y Medidas: AI/OpenAI-2-tecnicas-medidas.md
 
-  - Redes:
+  - 🌐 Redes:
       - Laboratorio MikroTik Hardening: redes/lab-mikrotik-hardening.md
 
-  - Docker:
+  - 🐳 Docker:
       - Laboratorio Wordpress: docker/lab-docker-wordpress-mariadb.md
       - Portainer: docker/lab-portainer.md
