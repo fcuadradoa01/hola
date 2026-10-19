@@ -1,3 +1,13 @@
+---
+title: "Laboratorio: WordPress + MariaDB con redes Docker"
+tags:
+  - docker
+  - wordpress
+  - mariadb
+  - redes
+  - segmentacion
+level: intermedio
+---
 # Laboratorio: WordPress + MariaDB con redes Docker
 
 > **Docker Networking | Laboratorio guiado**
