@@ -1,26 +1,59 @@
 site_name: Apuntes FP Informática
 site_description: Apuntes, laboratorios y recursos para Formación Profesional y CETI
 site_author: Paco Cuadrado
+site_url: https://fcuadradoa01.github.io/hola/
+repo_url: https://github.com/fcuadradoa01/hola
+repo_name: hola
 
 theme:
   name: material
   language: es
-
-features:
+  features:
     - navigation.tabs
     - navigation.sections
     - navigation.top
+    - navigation.expand
     - content.code.copy
     - search.highlight
-
-palette:
+    - toc.integrate
+    - content.code.annotate
+  palette:
     - scheme: default
       primary: indigo
       accent: blue
-
+      toggle:
+        icon: material/weather-night
+        name: Oscuro
     - scheme: slate
       primary: indigo
-      accent: blue
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Claro
+  font:
+    text: Roboto
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - css/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
   - 🏠 Inicio: index.md
