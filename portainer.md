@@ -1,3 +1,11 @@
+---
+title: "Portainer"
+tags:
+  - docker
+  - web
+  - admin
+level: intermedio
+---
 # Portainer
 Portainer sobre Docker en Ubuntu es muy sencillo y te va a dar una interfaz web para gestionar contenedores, imágenes, volúmenes, redes, logs, stacks de Docker Compose, etc.
 ## 1. Crear el volumen da datos Portainer
