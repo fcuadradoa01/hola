@@ -1,0 +1,990 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Laboratorio: WordPress + MariaDB con redes Docker - Apuntes FP Informática</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#laboratorio-wordpress-mariadb-con-redes-docker" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Apuntes FP Informática" class="md-header__button md-logo" aria-label="Apuntes FP Informática" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apuntes FP Informática
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Laboratorio: WordPress + MariaDB con redes Docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apuntes FP Informática" class="md-nav__button md-logo" aria-label="Apuntes FP Informática" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apuntes FP Informática
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Objetivos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-crear-las-redes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Crear las redes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Crear las redes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 CHECKPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-crear-el-servidor-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Crear el servidor MariaDB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Crear el servidor MariaDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 CHECKPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crear-el-servidor-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Crear el servidor WordPress
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Crear el servidor WordPress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 CHECKPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tenemos-un-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Tenemos un problema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Tenemos un problema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 CHECKPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-conectar-wordpress-a-la-red-privada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Conectar WordPress a la red privada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Conectar WordPress a la red privada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 CHECKPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-wordpress-encuentra-a-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. WordPress encuentra a MariaDB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. WordPress encuentra a MariaDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 CHECKPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-probar-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Probar WordPress
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Probar WordPress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 CHECKPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-romper-para-comprender" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Romper para comprender
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Romper para comprender">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkpoint_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 CHECKPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-resultado-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Resultado final
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Evidencias
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📸 Evidencias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-1-arquitectura-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencia 1. Arquitectura de red
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-2-servicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencia 2. Servicio
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autoevaluacion-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Autoevaluación final
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opcional-limpiar-el-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧹 Opcional: limpiar el laboratorio
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="laboratorio-wordpress-mariadb-con-redes-docker">Laboratorio: WordPress + MariaDB con redes Docker</h1>
+<blockquote>
+<p><strong>Docker Networking | Laboratorio guiado</strong></p>
+</blockquote>
+<h2 id="objetivos">🎯 Objetivos</h2>
+<p>En este laboratorio desplegarás una aplicación <strong>WordPress</strong> utilizando dos contenedores Docker:</p>
+<ul>
+<li>Un contenedor con <strong>WordPress + Apache</strong>.</li>
+<li>Un contenedor con <strong>MariaDB</strong> como servidor de bases de datos.</li>
+</ul>
+<p>La infraestructura utilizará dos redes Docker independientes:</p>
+<ul>
+<li><code>red_publica</code></li>
+<li><code>red_privada</code></li>
+</ul>
+<p>El resultado final será:</p>
+<pre><code class="language-text">                         USUARIO
+                            │
+                            │ HTTP :8080
+                            ▼
+                       HOST DOCKER
+                            │
+                            ▼
+              ═══════ red_publica ═══════
+                            │
+                     ┌──────▼──────┐
+                     │  WordPress  │
+                     │   Apache    │
+                     └──────┬──────┘
+                            │
+                       SQL :3306
+                            │
+              ═══════ red_privada ═══════
+                            │
+                     ┌──────▼──────┐
+                     │   MariaDB   │
+                     └─────────────┘
+</code></pre>
+<p>La idea fundamental es que <strong>WordPress estará conectado a las dos redes</strong>, mientras que <strong>MariaDB solamente pertenecerá a la red privada</strong>.</p>
+<hr />
+<h2 id="1-crear-las-redes">1. Crear las redes</h2>
+<p>Consulta primero las redes existentes:</p>
+<pre><code class="language-bash">docker network ls
+</code></pre>
+<p>Docker dispone de una red <code>bridge</code> por defecto, pero en este laboratorio utilizaremos nuestras propias redes <code>bridge</code>.</p>
+<p>Crea <code>red_publica</code>:</p>
+<pre><code class="language-bash">docker network create \
+  --driver bridge \
+  --subnet 172.20.0.0/24 \
+  red_publica
+</code></pre>
+<p>Crea <code>red_privada</code>:</p>
+<pre><code class="language-bash">docker network create \
+  --driver bridge \
+  --subnet 172.21.0.0/24 \
+  red_privada
+</code></pre>
+<p>Comprueba el resultado:</p>
+<pre><code class="language-bash">docker network ls
+</code></pre>
+<p>Puedes obtener información detallada de cada red con:</p>
+<pre><code class="language-bash">docker network inspect red_publica
+</code></pre>
+<pre><code class="language-bash">docker network inspect red_privada
+</code></pre>
+<blockquote>
+<h3 id="checkpoint">🧠 CHECKPOINT</h3>
+<p>Observa las subredes:</p>
+<p><code>text
+red_publica  → 172.20.0.0/24
+red_privada  → 172.21.0.0/24</code></p>
+<p><strong>Si dos contenedores están conectados a redes diferentes, ¿podrán comunicarse directamente entre ellos?</strong></p>
+<p>Piensa la respuesta antes de continuar.</p>
+</blockquote>
+<hr />
+<h2 id="2-crear-el-servidor-mariadb">2. Crear el servidor MariaDB</h2>
+<p>Comenzaremos por la base de datos. MariaDB debe encontrarse exclusivamente en:</p>
+<pre><code class="language-text">red_privada
+</code></pre>
+<p>Crea el contenedor:</p>
+<pre><code class="language-bash">docker run -d \
+  --name mariadb \
+  --network red_privada \
+  -e MARIADB_ROOT_PASSWORD=root1234 \
+  -e MARIADB_DATABASE=wordpress \
+  -e MARIADB_USER=wordpress \
+  -e MARIADB_PASSWORD=wp1234 \
+  mariadb
+</code></pre>
+<blockquote>
+<p><strong>Nota de laboratorio:</strong> las contraseñas son deliberadamente sencillas. No deben utilizarse credenciales de este tipo en un entorno real.</p>
+</blockquote>
+<p>Comprueba que el contenedor está funcionando:</p>
+<pre><code class="language-bash">docker ps
+</code></pre>
+<p>Si quieres examinar su proceso de inicialización:</p>
+<pre><code class="language-bash">docker logs mariadb
+</code></pre>
+<p>Ahora observa la red:</p>
+<pre><code class="language-bash">docker network inspect red_privada
+</code></pre>
+<p>Localiza el contenedor <code>mariadb</code> y comprueba qué dirección IP le ha asignado Docker.</p>
+<blockquote>
+<h3 id="checkpoint_1">🧠 CHECKPOINT</h3>
+<p>Observa <code>docker ps</code>. MariaDB utiliza el puerto:</p>
+<p><code>text
+3306/tcp</code></p>
+<p>Sin embargo, <strong>no hemos utilizado</strong>:</p>
+<p><code>bash
+-p 3306:3306</code></p>
+<p><strong>¿Qué diferencia crees que existe entre que MariaDB utilice el puerto 3306 y que nosotros publiquemos ese puerto en el host Docker?</strong></p>
+<p>No hace falta una definición formal. Lo importante es distinguir entre <strong>usar un puerto dentro de Docker</strong> y <strong>hacerlo accesible desde el exterior</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="3-crear-el-servidor-wordpress">3. Crear el servidor WordPress</h2>
+<p>Ahora desplegaremos WordPress. De momento lo conectaremos únicamente a:</p>
+<pre><code class="language-text">red_publica
+</code></pre>
+<p>Ejecuta:</p>
+<pre><code class="language-bash">docker run -d \
+  --name wordpress \
+  --network red_publica \
+  -p 8080:80 \
+  -e WORDPRESS_DB_HOST=mariadb:3306 \
+  -e WORDPRESS_DB_NAME=wordpress \
+  -e WORDPRESS_DB_USER=wordpress \
+  -e WORDPRESS_DB_PASSWORD=wp1234 \
+  wordpress
+</code></pre>
+<p>Observa especialmente:</p>
+<pre><code class="language-bash">-p 8080:80
+</code></pre>
+<p>Estamos haciendo accesible el puerto <code>80</code> del contenedor mediante el puerto <code>8080</code> del host:</p>
+<pre><code class="language-text">Navegador
+    │
+    ▼
+HOST DOCKER :8080
+    │
+    ▼
+WORDPRESS :80
+</code></pre>
+<blockquote>
+<h3 id="checkpoint_2">🧠 CHECKPOINT</h3>
+<p>Compara los dos contenedores:</p>
+<p><code>text
+WordPress → hemos utilizado -p 8080:80
+MariaDB   → no hemos utilizado -p</code></p>
+<p><strong>¿Por qué tiene sentido publicar el servidor web pero no publicar el servidor de bases de datos?</strong></p>
+</blockquote>
+<hr />
+<h2 id="4-tenemos-un-problema">4. Tenemos un problema</h2>
+<p>Comprueba las dos redes:</p>
+<pre><code class="language-bash">docker network inspect red_publica
+</code></pre>
+<pre><code class="language-bash">docker network inspect red_privada
+</code></pre>
+<p>En este momento tienes:</p>
+<pre><code class="language-text">red_publica
+└── wordpress
+
+red_privada
+└── mariadb
+</code></pre>
+<p>Pero recuerda que hemos configurado WordPress para conectarse a:</p>
+<pre><code class="language-text">mariadb:3306
+</code></pre>
+<p>Tenemos, por tanto, una aplicación en la que WordPress necesita hablar con MariaDB, pero ambos están en redes diferentes.</p>
+<pre><code class="language-text">red_publica                 red_privada
+
+┌───────────┐               ┌───────────┐
+│ WordPress │       X       │  MariaDB  │
+└───────────┘               └───────────┘
+</code></pre>
+<blockquote>
+<h3 id="checkpoint_3">🧠 CHECKPOINT</h3>
+<p><strong>Antes de continuar, piensa: ¿qué le falta a nuestra arquitectura para que WordPress y MariaDB puedan comunicarse?</strong></p>
+<p>Pista: la solución <strong>no pasa por publicar el puerto 3306 de MariaDB</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="5-conectar-wordpress-a-la-red-privada">5. Conectar WordPress a la red privada</h2>
+<p>WordPress necesita poder atender a los usuarios, pero también comunicarse con la base de datos. Por tanto, tendrá que pertenecer a <strong>las dos redes</strong>.</p>
+<p>Conecta el contenedor existente a <code>red_privada</code>:</p>
+<pre><code class="language-bash">docker network connect red_privada wordpress
+</code></pre>
+<p>Comprueba el resultado:</p>
+<pre><code class="language-bash">docker network inspect red_publica
+</code></pre>
+<pre><code class="language-bash">docker network inspect red_privada
+</code></pre>
+<p>Ahora deberías tener:</p>
+<pre><code class="language-text">red_publica
+└── wordpress
+
+red_privada
+├── wordpress
+└── mariadb
+</code></pre>
+<p>También puedes inspeccionar directamente WordPress:</p>
+<pre><code class="language-bash">docker inspect wordpress
+</code></pre>
+<p>Localiza la información de <code>NetworkSettings</code> y <code>Networks</code>. WordPress debería aparecer conectado a:</p>
+<pre><code class="language-text">red_publica
+red_privada
+</code></pre>
+<p>La arquitectura comienza a parecerse a la siguiente:</p>
+<pre><code class="language-text">              ═══════ red_publica ═══════
+                            │
+                     ┌──────▼──────┐
+                     │  WordPress  │
+                     └──────┬──────┘
+                            │
+              ═══════ red_privada ═══════
+                            │
+                     ┌──────▼──────┐
+                     │   MariaDB   │
+                     └─────────────┘
+</code></pre>
+<blockquote>
+<h3 id="checkpoint_4">🧠 CHECKPOINT</h3>
+<p><strong>¿Cuántas direcciones IP tendrá ahora el contenedor WordPress? ¿Por qué?</strong></p>
+<p>Relaciona tu respuesta con un ordenador físico o una máquina virtual que tenga <strong>dos tarjetas de red</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="6-wordpress-encuentra-a-mariadb">6. WordPress encuentra a MariaDB</h2>
+<p>Hay un detalle importante. Cuando configuramos WordPress escribimos:</p>
+<pre><code class="language-bash">WORDPRESS_DB_HOST=mariadb:3306
+</code></pre>
+<p>No escribimos una dirección como:</p>
+<pre><code class="language-text">172.21.0.X:3306
+</code></pre>
+<p>Vamos a comprobar qué ocurre.</p>
+<p>Entra en WordPress:</p>
+<pre><code class="language-bash">docker exec -it wordpress bash
+</code></pre>
+<p>Dentro del contenedor ejecuta:</p>
+<pre><code class="language-bash">getent hosts mariadb
+</code></pre>
+<p>Deberías obtener la dirección IP que Docker ha asignado al contenedor <code>mariadb</code> dentro de la red que ambos comparten.</p>
+<p>Sal del contenedor:</p>
+<pre><code class="language-bash">exit
+</code></pre>
+<blockquote>
+<h3 id="checkpoint_5">🧠 CHECKPOINT</h3>
+<p><strong>¿Qué ventaja tiene configurar WordPress utilizando el nombre <code>mariadb</code> en lugar de escribir directamente la dirección IP del contenedor?</strong></p>
+<p>Pista: piensa qué podría ocurrir con esa IP si mañana eliminamos el contenedor y lo volvemos a crear.</p>
+</blockquote>
+<hr />
+<h2 id="7-probar-wordpress">7. Probar WordPress</h2>
+<p>Ya tenemos la arquitectura necesaria:</p>
+<pre><code class="language-text">                        HOST
+                         │
+                       :8080
+                         │
+                         ▼
+                    WordPress
+                         │
+                         │ :3306
+                         ▼
+                     MariaDB
+</code></pre>
+<p>Desde un navegador accede a:</p>
+<pre><code class="language-text">http://IP_DEL_SERVIDOR:8080
+</code></pre>
+<p>Por ejemplo, si la IP de tu servidor Docker fuese <code>192.168.1.50</code>:</p>
+<pre><code class="language-text">http://192.168.1.50:8080
+</code></pre>
+<p>Si todo funciona correctamente aparecerá el asistente inicial de WordPress.</p>
+<p>Completa la instalación y comprueba que puedes acceder al sitio.</p>
+<blockquote>
+<h3 id="checkpoint_6">🧠 CHECKPOINT</h3>
+<p>Cuando cargas una página de WordPress se producen dos comunicaciones diferentes:</p>
+<p>```text
+Cliente ──────► WordPress</p>
+<p>WordPress ────► MariaDB
+```</p>
+<p><strong>¿Por cuál de nuestras dos redes Docker circula cada una?</strong></p>
+<p>Si puedes seguir mentalmente esas dos comunicaciones, tienes comprendida la idea fundamental del laboratorio.</p>
+</blockquote>
+<hr />
+<h2 id="8-romper-para-comprender">8. Romper para comprender</h2>
+<p>Una buena forma de entender una arquitectura es romperla de forma controlada.</p>
+<p>Desconecta WordPress de la red privada:</p>
+<pre><code class="language-bash">docker network disconnect red_privada wordpress
+</code></pre>
+<p>Intenta volver a cargar WordPress desde el navegador.</p>
+<p>Después vuelve a conectarlo:</p>
+<pre><code class="language-bash">docker network connect red_privada wordpress
+</code></pre>
+<p>Comprueba que la aplicación vuelve a funcionar correctamente.</p>
+<blockquote>
+<h3 id="checkpoint_7">🧠 CHECKPOINT</h3>
+<p>Al desconectar <code>red_privada</code>, <strong>ningún contenedor ha sido eliminado y ningún servicio ha sido desinstalado</strong>.</p>
+<p><strong>Entonces, ¿qué es exactamente lo que hemos roto?</strong></p>
+<p>Intenta expresarlo utilizando los conceptos <strong>conectividad</strong>, <strong>red privada</strong> y <strong>base de datos</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="9-resultado-final">9. Resultado final</h2>
+<p>Tu infraestructura debe quedar finalmente así:</p>
+<pre><code class="language-text">                         CLIENTE
+                            │
+                            │ HTTP
+                            ▼
+                      HOST DOCKER
+                        TCP 8080
+                            │
+                            ▼
+                ═════ red_publica ═════
+                            │
+                     ┌──────▼──────┐
+                     │  WordPress  │
+                     │   Apache    │
+                     │    PHP      │
+                     └──────┬──────┘
+                            │
+                       TCP 3306
+                            │
+                            ▼
+                ═════ red_privada ═════
+                            │
+                     ┌──────▼──────┐
+                     │   MariaDB   │
+                     └─────────────┘
+</code></pre>
+<hr />
+<h2 id="evidencias">📸 Evidencias</h2>
+<h3 id="evidencia-1-arquitectura-de-red">Evidencia 1. Arquitectura de red</h3>
+<p>Realiza una captura de:</p>
+<pre><code class="language-bash">docker network inspect red_privada
+</code></pre>
+<p>En ella deben poder identificarse:</p>
+<ul>
+<li><code>wordpress</code></li>
+<li><code>mariadb</code></li>
+<li>Las direcciones IP asignadas.</li>
+</ul>
+<h3 id="evidencia-2-servicio">Evidencia 2. Servicio</h3>
+<p>Realiza una captura del navegador mostrando <strong>WordPress funcionando correctamente</strong> y el acceso mediante el puerto <code>8080</code>.</p>
+<hr />
+<h2 id="autoevaluacion-final">✅ Autoevaluación final</h2>
+<p>Antes de considerar terminado el laboratorio, observa nuevamente esta representación:</p>
+<pre><code class="language-text">EXTERIOR
+   │
+   ▼
+WordPress
+   │
+   ▼
+MariaDB
+</code></pre>
+<p>Deberías ser capaz de explicar, sin consultar los pasos anteriores:</p>
+<blockquote>
+<p><strong>¿Por qué WordPress necesita dos redes, por qué MariaDB solo necesita una y por qué no ha sido necesario publicar el puerto 3306 de MariaDB?</strong></p>
+</blockquote>
+<p>Si puedes explicarlo con tus propias palabras, has entendido la idea principal del laboratorio.</p>
+<hr />
+<h2 id="opcional-limpiar-el-laboratorio">🧹 Opcional: limpiar el laboratorio</h2>
+<p>Cuando el profesor lo indique, puedes eliminar los recursos creados.</p>
+<p>Primero elimina los contenedores:</p>
+<pre><code class="language-bash">docker rm -f wordpress mariadb
+</code></pre>
+<p>Después elimina las redes:</p>
+<pre><code class="language-bash">docker network rm red_publica red_privada
+</code></pre>
+<p>Comprueba el resultado:</p>
+<pre><code class="language-bash">docker ps -a
+docker network ls
+</code></pre>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

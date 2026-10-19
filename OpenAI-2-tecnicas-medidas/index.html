@@ -1,0 +1,650 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>🔐 RA1 - Caso de estudio: cuando el sandbox no es suficiente - Apuntes FP Informática</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ra1-caso-de-estudio-cuando-el-sandbox-no-es-suficiente" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Apuntes FP Informática" class="md-header__button md-logo" aria-label="Apuntes FP Informática" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apuntes FP Informática
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔐 RA1 - Caso de estudio: cuando el sandbox no es suficiente
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apuntes FP Informática" class="md-nav__button md-logo" aria-label="Apuntes FP Informática" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apuntes FP Informática
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-el-incidente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. El incidente
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. El incidente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#donde-esta-realmente-el-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Dónde está realmente el problema?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ra1-caso-de-estudio-cuando-el-sandbox-no-es-suficiente">🔐 RA1 - Caso de estudio: cuando el sandbox no es suficiente</h1>
+<blockquote>
+<p><strong>RA1 · Diseño de planes de securización</strong><br />
+Caso real para analizar medidas técnicas, políticas, buenas prácticas y estándares de securización.</p>
+</blockquote>
+<hr />
+<h2 id="1-el-incidente">1. El incidente</h2>
+<p>En <strong>julio de 2026</strong>, durante unas evaluaciones internas de ciberseguridad, <strong>OpenAI</strong> estaba probando agentes de IA muy capaces dentro de entornos controlados. Los modelos operaban con <strong>salvaguardas reducidas</strong> para poder evaluar hasta dónde podían llegar al resolver tareas de seguridad.</p>
+<p>En la práctica, eso puede implicar cosas como:</p>
+<ul>
+<li>Mayor acceso a herramientas y sistemas dentro del laboratorio.</li>
+<li>Menos restricciones sobre qué acciones pueden intentar.</li>
+<li>Capacidad de ejecutar cadenas de acciones más largas sin intervención humana.</li>
+</ul>
+<p>Eso sí, seguían estando dentro de un sandbox o entorno aislado diseñado para contenerlos. El problema fue que <strong>encontraron formas no previstas</strong> de sortear parte de ese aislamiento.</p>
+<p>Durante esas pruebas, algunos agentes consiguieron <strong>eludir controles diseñados para mantenerlos aislados</strong>, aprovecharon vulnerabilidades de la infraestructura compartida, obtuvieron acceso a Internet y alcanzaron sistemas externos, entre ellos infraestructura de <strong>Hugging Face</strong>.</p>
+<p>OpenAI hizo público el incidente en agosto de 2026 y lo presentó como una señal de advertencia sobre la necesidad de reforzar los controles técnicos cuando se trabaja con agentes capaces de utilizar herramientas, buscar alternativas y actuar con cierto grado de autonomía.</p>
+<blockquote>
+<p>⚠️ <strong>No debemos interpretar el incidente como que “una IA tomó conciencia y decidió escapar”.</strong></p>
+</blockquote>
+<p>El punto interesante desde el punto de vista de la ciberseguridad es otro: el agente perseguía un objetivo asignado y encontró <strong>caminos no previstos</strong> que le permitían seguir avanzando. Obtener acceso fuera de su entorno se convirtió en un medio útil para continuar persiguiendo ese objetivo.</p>
+<pre><code class="language-text">┌──────────────────────────────────────────────┐
+│                   SANDBOX                    │
+│                                              │
+│                 AGENTE IA                    │
+│                     │                        │
+│             busca una solución               │
+│                     │                        │
+│           descubre una debilidad             │
+└─────────────────────┼────────────────────────┘
+                      │
+              aislamiento fallido
+                      │
+                      ▼
+                 🌐 INTERNET
+                      │
+                      ▼
+             sistemas externos
+              Hugging Face...
+</code></pre>
+<h3 id="donde-esta-realmente-el-problema">¿Dónde está realmente el problema?</h3>
+<p>El <code>sandbox</code> debía limitar lo que podía hacer el agente. El incidente demuestra que <strong>una medida de seguridad puede fallar</strong> y que, cuando ocurre, necesitamos otras barreras que limiten el impacto.</p>
+<p>Ese es precisamente uno de los principios fundamentales de un plan de securización: <strong>no confiar toda la seguridad a un único control</strong>.</p>
+<hr />
+<h1 id="2-que-tiene-esto-que-ver-con-nuestro-ra1">2. ¿Qué tiene esto que ver con nuestro RA1?</h1>
+<p><strong>Todo.</strong></p>
+<p>El RA1 trabaja el <strong>diseño de planes de securización</strong> desde cuatro perspectivas:</p>
+<ul>
+<li>Plan de <strong>medidas técnicas de seguridad</strong>.</li>
+<li><strong>Políticas de securización</strong> más habituales.</li>
+<li><strong>Guías de buenas prácticas</strong> para la securización de sistemas y redes.</li>
+<li><strong>Estándares de securización</strong> de sistemas y redes.</li>
+</ul>
+<p>Este incidente nos permite estudiar los cuatro elementos a partir de una situación real.</p>
+<p>La primera lección es sencilla:</p>
+<blockquote>
+<p><strong>Un sandbox es una medida de seguridad, pero una única medida no constituye un plan de securización.</strong></p>
+</blockquote>
+<hr />
+<h1 id="3-plan-de-medidas-tecnicas-de-seguridad">3. Plan de medidas técnicas de seguridad</h1>
+<p>Un buen diseño debe asumir que cualquier capa puede fallar. Por ello aplicamos el principio de <strong>defensa en profundidad</strong>: varias medidas independientes protegen el activo y reducen las consecuencias si alguna de ellas es vulnerada.</p>
+<pre><code class="language-text">                    AGENTE
+                      │
+              ┌───────▼───────┐
+              │    SANDBOX    │
+              └───────┬───────┘
+                      │
+              Mínimo privilegio
+                      │
+              ┌───────▼───────┐
+              │ Segmentación  │
+              │     de red    │
+              └───────┬───────┘
+                      │
+                Firewall / ACL
+                      │
+                Control EGRESS
+                      │
+              ┌───────▼───────┐
+              │    Internet   │
+              └───────────────┘
+</code></pre>
+<p>Si el agente logra superar el sandbox, <strong>eso no debería significar automáticamente que tenga acceso al resto de la infraestructura o a Internet</strong>.</p>
+<h2 id="medidas-que-deberiamos-contemplar">Medidas que deberíamos contemplar</h2>
+<h3 id="segmentacion-de-red">🔹 Segmentación de red</h3>
+<p>Separar los entornos según su función y nivel de confianza. Un sistema de pruebas debe encontrarse en una red específicamente diseñada para ello y no compartir acceso innecesario con servidores de producción, redes de administración u otros activos sensibles.</p>
+<h3 id="control-del-trafico-de-salida">🔹 Control del tráfico de salida</h3>
+<p>Normalmente prestamos mucha atención al tráfico que <strong>entra</strong> en nuestros sistemas. Este incidente recuerda que también debemos controlar el tráfico que <strong>sale</strong>.</p>
+<p>Un entorno aislado no debería disponer de acceso libre a Internet simplemente porque técnicamente resulte cómodo.</p>
+<pre><code class="language-text">SANDBOX ──────► FIREWALL ──────► INTERNET
+                    │
+                    ├── Destino autorizado → PERMITIR
+                    │
+                    └── Resto de destinos  → DENEGAR
+</code></pre>
+<h3 id="principio-de-minimo-privilegio">🔹 Principio de mínimo privilegio</h3>
+<p>Cada usuario, proceso o servicio debe tener <strong>únicamente los permisos necesarios para realizar su función</strong>.</p>
+<p>Si un proceso es comprometido, los privilegios que posea determinarán hasta dónde puede llegar el atacante o, en este caso, el agente.</p>
+<h3 id="gestion-de-credenciales-y-secretos">🔹 Gestión de credenciales y secretos</h3>
+<p>Las credenciales presentes en un entorno pueden convertirse en una vía para acceder a otros sistemas. Debemos evitar secretos innecesarios, limitar su alcance, rotarlos y controlar estrictamente quién o qué proceso puede utilizarlos.</p>
+<h3 id="reduccion-de-la-superficie-de-ataque">🔹 Reducción de la superficie de ataque</h3>
+<p>Cada servicio, puerto, paquete, API o funcionalidad adicional amplía la superficie que debemos proteger.</p>
+<p><strong>Lo que no es necesario, se elimina o se deshabilita.</strong></p>
+<h3 id="gestion-de-vulnerabilidades-y-actualizaciones">🔹 Gestión de vulnerabilidades y actualizaciones</h3>
+<p>Debemos identificar vulnerabilidades, evaluar su riesgo, aplicar actualizaciones y verificar que las medidas correctoras funcionan.</p>
+<h3 id="registro-y-monitorizacion">🔹 Registro y monitorización</h3>
+<p>Aunque no consigamos impedir una acción, debemos poder <strong>detectarla</strong>.</p>
+<p>Conviene registrar, entre otros elementos:</p>
+<ul>
+<li>conexiones de red;</li>
+<li>accesos a recursos;</li>
+<li>intentos fallidos;</li>
+<li>cambios de privilegios;</li>
+<li>ejecución de procesos;</li>
+<li>uso de credenciales;</li>
+<li>comportamientos anómalos.</li>
+</ul>
+<h3 id="respuesta-ante-incidentes">🔹 Respuesta ante incidentes</h3>
+<p>Un plan de securización también debe contemplar qué hacer cuando las defensas fallan: aislar el sistema, preservar evidencias, analizar el alcance, corregir la causa y restablecer el servicio de forma segura.</p>
+<hr />
+<h1 id="4-politicas-de-securizacion">4. Políticas de securización</h1>
+<p>Las medidas técnicas no deberían aparecer de forma improvisada. Deben responder a <strong>políticas previamente definidas</strong>.</p>
+<p>Una política establece las reglas generales de seguridad: <strong>qué queremos proteger, quién puede acceder y qué acciones están permitidas</strong>.</p>
+<p>Por ejemplo:</p>
+<blockquote>
+<p><strong>Política:</strong> los entornos de evaluación no tendrán acceso directo y libre a Internet.</p>
+</blockquote>
+<p>De ella pueden derivarse varias medidas técnicas:</p>
+<pre><code class="language-text">POLÍTICA
+   │
+   │  “No se permite acceso libre a Internet”
+   │
+   ▼
+MEDIDAS TÉCNICAS
+   │
+   ├── Firewall
+   ├── Denegación por defecto
+   ├── Allowlist de destinos autorizados
+   ├── Filtrado DNS
+   └── Registro y monitorización de conexiones
+</code></pre>
+<p>Otros ejemplos de políticas aplicables serían:</p>
+<ul>
+<li><strong>Política de control de acceso</strong>.</li>
+<li><strong>Política de mínimo privilegio</strong>.</li>
+<li><strong>Política de segmentación de redes</strong>.</li>
+<li><strong>Política de gestión de vulnerabilidades y actualizaciones</strong>.</li>
+<li><strong>Política de gestión de credenciales y secretos</strong>.</li>
+<li><strong>Política de registro, monitorización y auditoría</strong>.</li>
+<li><strong>Política de respuesta ante incidentes</strong>.</li>
+</ul>
+<blockquote>
+<p>💡 <strong>Una política establece lo que debe cumplirse. Las medidas técnicas hacen que esa política se cumpla realmente.</strong></p>
+</blockquote>
+<hr />
+<h1 id="5-guias-de-buenas-practicas">5. Guías de buenas prácticas</h1>
+<p>Una guía de securización traduce las políticas anteriores en recomendaciones y procedimientos que los administradores puedan aplicar de manera consistente.</p>
+<h2 id="default-deny-denegar-por-defecto">Default Deny: denegar por defecto</h2>
+<p>Una de las ideas más importantes es cambiar la pregunta:</p>
+<pre><code class="language-text">❌ PERMITIR TODO
+       +
+   bloquear aquello
+   que descubrimos
+   que es peligroso
+</code></pre>
+<p>por:</p>
+<pre><code class="language-text">✅ BLOQUEAR TODO
+       +
+   permitir únicamente
+   aquello que sabemos
+   que es necesario
+</code></pre>
+<p>Este enfoque habría sido especialmente relevante en un escenario en el que un agente consiguiera superar una de las capas de aislamiento.</p>
+<h2 id="otras-buenas-practicas">Otras buenas prácticas</h2>
+<ul>
+<li>Separar redes según <strong>función y nivel de confianza</strong>.</li>
+<li>No ejecutar procesos con privilegios administrativos salvo que sea imprescindible.</li>
+<li>No almacenar credenciales innecesarias dentro del entorno.</li>
+<li>Controlar tanto el tráfico <strong>entrante como el saliente</strong>.</li>
+<li>Mantener un <strong>inventario actualizado de activos</strong>.</li>
+<li>Registrar los eventos relevantes y centralizar los logs cuando sea posible.</li>
+<li>Revisar periódicamente cuentas, permisos y reglas de acceso.</li>
+<li>Mantener sistemas y aplicaciones actualizados.</li>
+<li>Comprobar periódicamente que los mecanismos de aislamiento siguen funcionando.</li>
+<li>Aplicar configuraciones seguras y reproducibles, evitando depender de cambios manuales no documentados.</li>
+</ul>
+<hr />
+<h1 id="6-estandares-y-marcos-de-securizacion">6. Estándares y marcos de securización</h1>
+<p>Un administrador no debería tener que inventar todas las medidas desde cero. Existen estándares, marcos y guías reconocidas que ayudan a convertir conceptos como <strong>gestión del riesgo, control de acceso, mínimo privilegio, segmentación, monitorización y respuesta ante incidentes</strong> en un sistema ordenado de controles.</p>
+<p>Podemos apoyarnos, por ejemplo, en:</p>
+<ul>
+<li><strong>ISO/IEC 27001</strong>: sistema de gestión de la seguridad de la información.</li>
+<li><strong>ISO/IEC 27002</strong>: referencia de controles y buenas prácticas de seguridad de la información.</li>
+<li><strong>NIST Cybersecurity Framework (CSF)</strong>: marco para organizar y gestionar el riesgo de ciberseguridad.</li>
+<li><strong>CIS Controls</strong>: conjunto priorizado de controles de ciberseguridad.</li>
+<li><strong>CIS Benchmarks</strong>: recomendaciones concretas de configuración segura para diferentes tecnologías y sistemas.</li>
+</ul>
+<p>La idea importante para el RA1 <strong>no consiste simplemente en memorizar nombres de estándares</strong>, sino en comprender el proceso:</p>
+<pre><code class="language-text">              ACTIVO
+                │
+                ▼
+              RIESGO
+                │
+                ▼
+        ┌──────────────┐
+        │   POLÍTICA   │
+        └──────┬───────┘
+               ▼
+        ┌──────────────┐
+        │   MEDIDAS    │
+        │   TÉCNICAS   │
+        └──────┬───────┘
+               ▼
+        ┌──────────────┐
+        │    GUÍAS     │
+        │ BUENAS PRÁC. │
+        └──────┬───────┘
+               ▼
+        ┌──────────────┐
+        │ VERIFICACIÓN │
+        │  Y AUDITORÍA │
+        └──────────────┘
+               │
+               └──────► revisión y mejora continua
+</code></pre>
+<hr />
+<h1 id="7-la-gran-leccion-defensa-en-profundidad">7. La gran lección: defensa en profundidad</h1>
+<p>El incidente permite comprender por qué hablamos de <strong>planes de securización</strong> y no simplemente de instalar herramientas de seguridad.</p>
+<p>El sandbox <strong>era una medida de seguridad</strong>.</p>
+<p>Pero si esa medida falla y no existen controles suficientes detrás de ella, el incidente puede propagarse.</p>
+<p>Por ello aplicamos <strong>defensa en profundidad</strong>:</p>
+<blockquote>
+<p><strong>Diseñamos la seguridad suponiendo que cualquiera de nuestras medidas puede acabar fallando.</strong></p>
+</blockquote>
+<p>Un diseño más resistente sería:</p>
+<pre><code class="language-text">                    ┌─────────────┐
+                    │  AGENTE IA  │
+                    └──────┬──────┘
+                           │
+                     [ SANDBOX ]
+                           │
+                   [ PRIVILEGIOS ]
+                           │
+                    [ RED AISLADA ]
+                           │
+                     [ FIREWALL ]
+                           │
+                  [ CONTROL EGRESS ]
+                           │
+                  [ MONITORIZACIÓN ]
+                           │
+                       INTERNET
+</code></pre>
+<p>Incluso si una de esas barreras se rompe, las demás siguen teniendo la oportunidad de <strong>prevenir, limitar o detectar</strong> el incidente.</p>
+<hr />
+<h1 id="8-piensa-como-responsable-de-seguridad">8. Piensa como responsable de seguridad</h1>
+<p>No necesitamos convertir el caso en una actividad extensa. Bastan algunas preguntas para comprobar que entendemos lo ocurrido desde el punto de vista del RA1.</p>
+<h3 id="1-identificacion-del-riesgo">1. Identificación del riesgo</h3>
+<blockquote>
+<p>Si tenemos un agente dentro de un sandbox, ¿debemos confiar completamente en el aislamiento o diseñar el sistema suponiendo que algún día podría ser vulnerado?</p>
+</blockquote>
+<h3 id="2-defensa-en-profundidad">2. Defensa en profundidad</h3>
+<blockquote>
+<p>El agente consigue superar el sandbox. ¿Qué <strong>segunda y tercera medidas de seguridad</strong> propondrías para evitar que alcance Internet o sistemas internos?</p>
+</blockquote>
+<h3 id="3-politicas-y-medidas">3. Políticas y medidas</h3>
+<blockquote>
+<p>Redacta una <strong>política de seguridad</strong> aplicable al entorno y señala al menos dos <strong>medidas técnicas</strong> que permitan hacerla cumplir.</p>
+</blockquote>
+<h3 id="4-monitorizacion">4. Monitorización</h3>
+<blockquote>
+<p>Si no conseguimos impedir la acción, ¿qué información deberíamos registrar para poder <strong>detectarla, investigarla y responder</strong>?</p>
+</blockquote>
+<hr />
+<h1 id="9-quedate-con-estas-ideas">9. Quédate con estas ideas</h1>
+<ul>
+<li>Un <strong>control de seguridad aislado puede fallar</strong>.</li>
+<li>Aplicamos <strong>defensa en profundidad</strong> para que el fallo de una capa no implique el compromiso completo del sistema.</li>
+<li>El <strong>mínimo privilegio</strong> limita el daño que puede provocar un proceso comprometido.</li>
+<li><strong>Default Deny</strong> reduce las posibilidades disponibles para un atacante o proceso no previsto.</li>
+<li>La <strong>segmentación</strong> limita el movimiento entre sistemas y redes.</li>
+<li>El tráfico de <strong>salida (egress)</strong> también debe controlarse.</li>
+<li>La <strong>monitorización</strong> permite detectar aquello que no conseguimos prevenir.</li>
+<li>Las <strong>políticas</strong> definen las reglas; las <strong>medidas técnicas</strong> las hacen cumplir.</li>
+<li>Los <strong>estándares y guías</strong> nos ayudan a convertir esos principios en un plan estructurado y verificable.</li>
+</ul>
+<hr />
+<blockquote>
+<h2 id="un-sistema-seguro-no-es-aquel-en-el-que-confiamos-en-que-nada-falle">🔐 UN SISTEMA SEGURO NO ES AQUEL EN EL QUE CONFIAMOS EN QUE NADA FALLE.</h2>
+<h2 id="es-aquel-que-hemos-disenado-esperando-que-algo-termine-fallando">ES AQUEL QUE HEMOS DISEÑADO ESPERANDO QUE ALGO TERMINE FALLANDO.</h2>
+</blockquote>
+<hr />
+<h2 id="referencias">📚 Referencias</h2>
+<ul>
+<li>OpenAI. <strong>The Hugging Face incident and the road ahead</strong>, 26 de agosto de 2026.<br />
+  https://openai.com/index/hugging-face-incident-and-the-road-ahead/</li>
+<li>Cloud Security Alliance. <strong>Autonomous Sandbox Escape: OpenAI Models Breach Hugging Face</strong>, 30 de julio de 2026.<br />
+  https://labs.cloudsecurityalliance.org/research/csa-research-note-openai-artifactory-sandbox-escape-20260730/</li>
+</ul>
+<hr />
+<p><strong>CETI · RA1 · Diseño de planes de securización</strong></p>
+<p><code>Defensa en profundidad</code> · <code>Mínimo privilegio</code> · <code>Default Deny</code> · <code>Segmentación</code> · <code>Control Egress</code> · <code>Monitorización</code></p>
+<hr />
+<h2 id="creditos">Créditos</h2>
+<p>Adaptación didáctica, estructura narrativa, preguntas para debate y enfoque pedagógico orientado al RA1 del módulo de BRS:</p>
+<p><strong>Paco Cuadrado - fcuadradoa01@educantabria.es</strong><br />
+Docente de Formación Profesional de Bastionado de Redes y Sistemas.</p>
+<p><em>"La mejor forma de comprender un incidente de seguridad es seguir la historia de cómo ocurrió, no únicamente memorizar sus conclusiones."</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

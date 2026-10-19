@@ -1,0 +1,591 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Laboratorio MikroTik RouterOS 7: Guía de Segmentación y Hardening - Apuntes FP Informática</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#laboratorio-mikrotik-routeros-7-guia-de-segmentacion-y-hardening" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Apuntes FP Informática" class="md-header__button md-logo" aria-label="Apuntes FP Informática" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Apuntes FP Informática
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Laboratorio MikroTik RouterOS 7: Guía de Segmentación y Hardening
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Apuntes FP Informática" class="md-nav__button md-logo" aria-label="Apuntes FP Informática" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Apuntes FP Informática
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topologia-de-interfaces-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topología de Interfaces de Referencia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-1-creacion-de-listas-de-interfaces-interface-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1: Creación de Listas de Interfaces (Interface Lists)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-2-hardening-del-router-cadena-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2: Hardening del Router (Cadena Input)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 2: Hardening del Router (Cadena Input)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configurar-puertos-y-servicios-seguros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Configurar puertos y servicios seguros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-reglas-de-firewall-para-el-plano-de-control-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Reglas de Firewall para el plano de control (input)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-3-segmentacion-y-politicas-de-trafico-forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3: Segmentación y Políticas de Tráfico (Forward)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 3: Segmentación y Políticas de Tráfico (Forward)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-separar-el-nat-de-la-lan-y-de-la-dmz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Separar el NAT de la LAN y de la DMZ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-reglas-de-firewall-para-el-trafico-de-transito-forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Reglas de Firewall para el tráfico de tránsito (forward)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacion-en-el-laboratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verificación en el Laboratorio
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="laboratorio-mikrotik-routeros-7-guia-de-segmentacion-y-hardening">Laboratorio MikroTik RouterOS 7: Guía de Segmentación y Hardening</h1>
+<p>Este tutorial detalla la implementación práctica de las políticas de seguridad (segmentación de red, filtrado entre zonas y endurecimiento del plano de control) para un entorno virtualizado en VMware Workstation con tres zonas: <strong>WAN</strong>, <strong>LAN</strong> y <strong>DMZ</strong>.</p>
+<hr />
+<h2 id="topologia-de-interfaces-de-referencia">Topología de Interfaces de Referencia</h2>
+<ul>
+<li><code>ether1</code>: WAN (Conectada a Internet / NAT)</li>
+<li><code>ether2</code>: LAN (Red de empleados, ej. <code>192.168.10.0/24</code>)</li>
+<li><code>ether3</code>: DMZ (Servidores Ubuntu 24.04, ej. <code>192.168.20.0/24</code>)</li>
+</ul>
+<hr />
+<h2 id="paso-1-creacion-de-listas-de-interfaces-interface-lists">Paso 1: Creación de Listas de Interfaces (Interface Lists)</h2>
+<p>Para mantener un firewall limpio y escalable en RouterOS 7, agrupamos las interfaces físicas en listas lógicas.</p>
+<pre><code class="language-routeros">/interface list
+add name=WAN
+add name=LAN
+add name=DMZ
+
+/interface list member
+add interface=ether1 list=WAN
+add interface=ether2 list=LAN
+add interface=ether3 list=DMZ
+</code></pre>
+<hr />
+<h2 id="paso-2-hardening-del-router-cadena-input">Paso 2: Hardening del Router (Cadena Input)</h2>
+<p>El plano de control del router debe protegerse estrictamente. En este laboratorio aplicaremos los siguientes requisitos específicos:
+1. <strong>LAN:</strong> Administración permitida <strong>únicamente</strong> desde una IP específica (ej. <code>192.168.10.10</code>) mediante <strong>SSH, Winbox y HTTP</strong>.
+2. <strong>WAN:</strong> Administración permitida desde una IP fija externa específica (ej. <code>192.168.16.123</code>) <strong>solo mediante SSH</strong> (para demostraciones o pruebas de acceso remoto).</p>
+<h3 id="1-configurar-puertos-y-servicios-seguros">1. Configurar puertos y servicios seguros</h3>
+<p>Desactivamos los servicios no utilizados y aseguramos los puertos de gestión:</p>
+<pre><code class="language-routeros">/ip service
+set ssh port=2222
+set winbox port=8291
+set www port=80
+set telnet disabled=yes
+set ftp disabled=yes
+set api disabled=yes
+set api-ssl disabled=yes
+set www-ssl disabled=yes
+</code></pre>
+<h3 id="2-reglas-de-firewall-para-el-plano-de-control-input">2. Reglas de Firewall para el plano de control (<code>input</code>)</h3>
+<p><strong>Las reglas del firewall se evalúan de arriba hacia abajo, una a una</strong>. Cuando un paquete coincide con una regla que tiene una acción definitiva (accept, drop, reject), el proceso se detiene y no se siguen evaluando más reglas.</p>
+<p>En casi todos los rúters/firewalls verás algo parecido a:</p>
+<pre><code class="language-routeros">accept established
+accept related
+drop invalid
+````
+#### ¿Qué significa established?
+
+&quot;Es una conversación ya iniciada.&quot; Sin esta regla cada paquete (cada vez que haces clic en winbox por ejemplo) tendría que recorrer todas las reglas del firewall.
+
+#### ¿Qué significa related?
+
+&quot;Es una conversación secundaria derivada de otra.&quot; Son conexiones nuevas, pero que están relacionadas con otra ya existente.
+
+
+
+#### ¿Qué significa invalid?
+
+&quot;Es alguien hablando en mitad de una conversación sin que nadie sepa quién es.&quot;
+
+**¿Por qué descartarlos?** Porque normalmente son:
+
+- Errores.
+- Ruido de red.
+- Tráfico malformado.
+- Intentos de evasión del firewall.
+- Escaneos
+
+... y no suelen tener utilidad legítima.
+
+
+#### ...con una analogía física:
+
+- New → llama a la puerta.
+- Established → está dentro de casa.
+- Related → viene acompañado de alguien que ya conocemos.
+- Invalid → aparece en mitad del salón sin haber entrado por la puerta.
+
+#### Concepto de firewall stateful (con estado)
+Que es precisamente una de las bases del diseño de planes de securización que trabajamos en el RA1.
+
+```routeros
+/ip firewall filter
+
+# 1. Permitir conexiones establecidas y relacionadas (vital para el tráfico de vuelta)
+add chain=input action=accept connection-state=established,related comment=&quot;Aceptar trafico establecido/relacionado&quot;
+
+# 2. Descartar paquetes con estados inválidos
+add chain=input action=drop connection-state=invalid comment=&quot;Descartar paquetes invalidos&quot;
+
+# 3. Permitir ICMP (Ping) con limitación para evitar ataques de inundación
+add chain=input action=accept protocol=icmp limit=50/5s,5 comment=&quot;Permitir Ping limitado&quot;
+
+# 4. Administración desde la LAN (Solo IP específica: 192.168.10.50) para SSH, Winbox y HTTP
+add chain=input action=accept in-interface-list=LAN src-address=192.168.10.50 protocol=tcp dst-port=2222 comment=&quot;Admin LAN: SSH&quot;
+add chain=input action=accept in-interface-list=LAN src-address=192.168.10.50 protocol=tcp dst-port=8291 comment=&quot;Admin LAN: Winbox&quot;
+add chain=input action=accept in-interface-list=LAN src-address=192.168.10.50 protocol=tcp dst-port=80 comment=&quot;Admin LAN: HTTP&quot;
+
+# 5. Administración desde la WAN (Solo IP externa específica: 203.0.113.50) solo para SSH
+add chain=input action=accept in-interface-list=WAN src-address=203.0.113.50 protocol=tcp dst-port=2222 comment=&quot;Admin WAN (Demo): SSH&quot;
+
+# 6. Denegar cualquier otro intento de acceso al router (Default Deny en Input)
+add chain=input action=drop comment=&quot;Bloquear resto de accesos al router&quot;
+</code></pre>
+<hr />
+<h2 id="paso-3-segmentacion-y-politicas-de-trafico-forward">Paso 3: Segmentación y Políticas de Tráfico (<code>Forward</code>)</h2>
+<p>Para el tráfico que atraviesa el router entre zonas, aplicamos una política estricta de denegación por defecto, permitiendo únicamente el flujo necesario.</p>
+<h3 id="1-separar-el-nat-de-la-lan-y-de-la-dmz">1. Separar el NAT de la LAN y de la DMZ</h3>
+<pre><code class="language-routeros">/ip firewall nat
+
+add chain=srcnat \
+    src-address=192.168.10.0/24 \
+    out-interface-list=WAN \
+    action=masquerade \
+    comment=&quot;LAN -&gt; Internet&quot;
+
+add chain=srcnat \
+    src-address=192.168.20.0/24 \
+    out-interface-list=WAN \
+    action=masquerade \
+    comment=&quot;DMZ -&gt; Internet&quot;
+</code></pre>
+<h3 id="2-reglas-de-firewall-para-el-trafico-de-transito-forward">2. Reglas de Firewall para el tráfico de tránsito (<code>forward</code>)</h3>
+<pre><code class="language-routeros">/ip firewall filter
+
+# 1. Permitir conexiones establecidas y relacionadas
+add chain=forward action=accept connection-state=established,related comment=&quot;Forward: Permitir establecidas/relacionadas&quot;
+
+# 2. Descartar paquetes inválidos
+add chain=forward action=drop connection-state=invalid comment=&quot;Forward: Descartar invalidos&quot;
+
+# --- TRÁFICO DESDE LA LAN ---
+# Permitir que la LAN salga a Internet (WAN)
+add chain=forward action=accept in-interface-list=LAN out-interface-list=WAN comment=&quot;LAN a WAN: Permitido&quot;
+
+# Permitir acceso controlado de la LAN a la DMZ (ej. SSH administrativo al servidor web desde una IP de la LAN)
+add chain=forward action=accept in-interface-list=LAN out-interface-list=DMZ dst-address=192.168.20.10 protocol=tcp dst-port=22 comment=&quot;LAN a DMZ: Admin SSH a Servidor Web&quot;
+
+# --- TRÁFICO DESDE LA DMZ ---
+# Permitir que los servidores de la DMZ salgan a Internet estrictamente para actualizaciones (o restringir si es necesario)
+add chain=forward action=accept in-interface-list=DMZ out-interface-list=WAN comment=&quot;DMZ a WAN: Salida permitida para actualizaciones&quot;
+
+# Permitir comunicación interna de la DMZ: Servidor Web (192.168.20.10) a Base de Datos (192.168.20.20)
+add chain=forward action=accept src-address=192.168.20.10 dst-address=192.168.20.20 protocol=tcp dst-port=3306 comment=&quot;DMZ Web a BD MySQL&quot;
+
+# --- BLOQUEOS DE AISLAMIENTO (Asegurando la DMZ y LAN) ---
+# Bloquear estrictamente cualquier intento de la DMZ hacia la LAN (Movimiento lateral evitado)
+add chain=forward action=drop in-interface-list=DMZ out-interface-list=LAN comment=&quot;AISLAMIENTO: Bloquear DMZ hacia LAN&quot;
+
+# --- TRÁFICO DESDE LA WAN (Publicación de servicios) ---
+# Permitir acceso público HTTP/HTTPS hacia el Servidor Web ubicado en la DMZ (DNAT previo necesario)
+add chain=forward action=accept in-interface-list=WAN out-interface-list=DMZ dst-address=192.168.20.10 protocol=tcp dst-port=80 comment=&quot;WAN a DMZ: Servidor Web HTTP&quot;
+add chain=forward action=accept in-interface-list=WAN out-interface-list=DMZ dst-address=192.168.20.10 protocol=tcp dst-port=443 comment=&quot;WAN a DMZ: Servidor Web HTTPS&quot;
+
+# 3. Regla de cierre por defecto para el Forward
+add chain=forward action=drop comment=&quot;Default Deny Forward&quot;
+</code></pre>
+<hr />
+<h2 id="verificacion-en-el-laboratorio">Verificación en el Laboratorio</h2>
+<ol>
+<li><strong>Prueba de Hardening LAN:</strong> Intenta acceder al router por Winbox o SSH desde otra IP de la LAN que <strong>no</strong> sea <code>192.168.10.50</code>; la conexión debe ser rechazada/bloqueada.</li>
+<li><strong>Prueba de Aislamiento:</strong> Desde el servidor web de la DMZ, intenta hacer un ping o conexión hacia un equipo de la LAN (<code>192.168.10.x</code>); la regla de bloqueo de DMZ a LAN debe descartar el paquete inmediatamente.</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
