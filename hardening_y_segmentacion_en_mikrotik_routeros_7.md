@@ -1,3 +1,14 @@
+---
+title: "Laboratorio MikroTik RouterOS 7: Guía de Segmentación y Hardening"
+tags:
+  - Mikrotik
+  - RouterOS
+  - firewall
+  - redes
+  - segmentacion
+level: intermedio
+---
+
 # Laboratorio MikroTik RouterOS 7: Guía de Segmentación y Hardening
 
 Este tutorial detalla la implementación práctica de las políticas de seguridad (segmentación de red, filtrado entre zonas y endurecimiento del plano de control) para un entorno virtualizado en VMware Workstation con tres zonas: **WAN**, **LAN** y **DMZ**.
