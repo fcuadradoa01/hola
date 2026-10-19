@@ -8,12 +8,12 @@ nav:
   - Inicio: index.md
 
   - IA:
-      - OpenAI: OpenAI-1-el-incidente.md
-      - Técnicas y Medidas: OpenAI-2-tecnicas-medidas.md
+      - OpenAI: docs/AI/OpenAI-1-el-incidente.md
+      - Técnicas y Medidas: docs/AI/OpenAI-2-tecnicas-medidas.md
 
   - Redes:
-      - Laboratorio MikroTik Hardening: lab-mikrotik-hardening.md
+      - Laboratorio MikroTik Hardening: docs/redes/lab-mikrotik-hardening.md
 
   - Docker:
-      - Laboratorio Wordpress: lab-docker-wordpress-mariadb.md
-      - Portainer: portainer.md
+      - Laboratorio Wordpress: docs/docker/lab-docker-wordpress-mariadb.md
+      - Portainer: docs/docker/portainer.md
