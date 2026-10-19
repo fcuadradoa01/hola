@@ -63,6 +63,7 @@ nav:
       - Técnicas y Medidas: AI/OpenAI-2-tecnicas-medidas.md
 
   - 🌐 Redes:
+      - Guía configuración de la red en Ubuntu Server: redes/guia-config-red-ubuntu.md
       - Laboratorio MikroTik Hardening: redes/lab-mikrotik-hardening.md
 
   - 🐳 Docker:
