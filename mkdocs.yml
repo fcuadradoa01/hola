@@ -1,0 +1,8 @@
+site_name: Apuntes FP Informática
+
+theme:
+  name: material
+  language: es
+
+nav:
+  - Inicio: index.md
