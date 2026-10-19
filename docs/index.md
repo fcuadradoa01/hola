@@ -12,27 +12,20 @@ Bienvenido al repositorio de apuntes, laboratorios guiados y recursos prácticos
 ### Redes
 - MikroTik
 - WireGuard
-- AWS
+- IPv6
 
 ### Sistemas
 - Linux
 - Windows
 - Dockers
+- Proxmox
 - Automatización
 
-### Contenedores y Virtualización
-- Docker
-- Portainer
-- Proxmox
-
----
-
-## Objetivo
-
-Este portal recopila documentación técnica, procedimientos, laboratorios y material didáctico para estudiantes, docentes y profesionales del sector TIC.
+### Cloud
+ - AWS
 
 ---
 
 ## Autor
 
-Francisco Javier Cuadrado Aguado
+Paco Cuadrado ```fcuadradoa01@educantabria.es```
