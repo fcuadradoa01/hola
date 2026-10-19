@@ -16,4 +16,4 @@ nav:
 
   - Docker:
       - Laboratorio Wordpress: docker/lab-docker-wordpress-mariadb.md
-      - Portainer: docker/portainer.md
+      - Portainer: docker/lab-portainer.md
