@@ -2,7 +2,7 @@
 
 <div class="grid cards" markdown>
 
--   :material-console: **Laboratorio Wordpress sobre MariaDB**
+-   :material-web-plus: **Laboratorio Wordpress sobre MariaDB**
 
     ---
 
@@ -10,11 +10,7 @@
 
     [Abrir documento](lab-docker-wordpress-mariadb.md)
 
-</div>
-
-<div class="grid cards" markdown>
-
--   :material-cog: **Laboratorio Portainer**
+-   :material-console-network: **Laboratorio Portainer**
 
     ---
 
