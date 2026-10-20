@@ -16,7 +16,7 @@
 
 <div class="grid cards" markdown>
 
--   :material-console: **2 OpenAI Técnicas y medidas**
+-   :material-cog: **2 OpenAI Técnicas y medidas**
 
     ---
 
