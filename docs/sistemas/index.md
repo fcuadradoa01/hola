@@ -2,12 +2,10 @@
 
 <div class="grid cards" markdown>
 
-- :material-console:
-
-    ## no-root
+- :material-console: no-root
   
-    No Root.
+    No Root doc.
 
-    <a href="sistemas/no-root.md" markdown>Ver contenido →</a>
+    <a href="no-root.md" markdown>Ver contenido →</a>
 
 </div>
