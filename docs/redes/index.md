@@ -1,7 +1,5 @@
 # :material-lan: Redes
 
-Documentación, laboratorios guiados y recursos relacionados con la administración de redes.
-
 <div class="grid cards" markdown>
 
 -   :material-ubuntu: **Configuración de red en Ubuntu**
