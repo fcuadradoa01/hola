@@ -2,60 +2,34 @@
 
 <div class="grid cards" markdown>
 
-- :material-console:
-
-    ## sistemas
+- :material-console: sistemas
   
     Administración de Sistemas.
 
     <a href="sistemas/" markdown>Ver contenidos →</a>
 
-</div>
-
-<div class="grid cards" markdown>
-
-- :material-shield-lock:
-
-    ## ciberseguridad
+- :material-shield-lock: ciberseguridad
   
-    Ciberseguridad.
+    Ciberseguridad e incidentes.
 
     <a href="ciberseguridad/" markdown>Ver contenidos →</a>
 
-</div>
-
-<div class="grid cards" markdown>
-
-- :material-lan:
-
-    ## Redes
+- :material-lan: redes
 
     MikroTik, WireGuard, IPv6 y administración de redes.
 
     <a href="redes/" markdown>Acceder →</a>
 
-</div>
+- :material-docker: dockers
 
-<div class="grid cards" markdown>
-
-- :material-docker:
-
-    ## Dockers
-
-    Virtualización, Proxmox, Docker y automatización.
+    Docker, LXC, Virtualización, Proxmox, etc.
 
     <a href="docker/" markdown>Ver contenidos →</a>
     
-</div>
-
-<div class="grid cards" markdown>
-
-- :material-cloud:
-
-    ## Cloud
+- :material-cloud: cloud
 
     AWS y servicios en la nube.
 
-    <a href="redes/index.md" markdown>Ver contenidos →</a>
+    <a href="cloud/" markdown>Ver contenidos →</a>
 
 </div>
