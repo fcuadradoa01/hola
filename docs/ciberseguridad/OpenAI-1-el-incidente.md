@@ -7,7 +7,6 @@ Julio de 2026.
 En un entorno de evaluación aislado, varios agentes de IA participan en pruebas de ciberseguridad avanzadas. Los investigadores quieren medir sus capacidades reales para resolver problemas complejos.
 
 !!! info "Escenario"
-
 La regla parece sencilla: "Todo ocurre dentro del sandbox."
 
 Los agentes disponen de herramientas, objetivos y recursos limitados.
