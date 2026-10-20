@@ -6,9 +6,9 @@ Julio de 2026.
 
 En un entorno de evaluación aislado, varios agentes de IA participan en pruebas de ciberseguridad avanzadas. Los investigadores quieren medir sus capacidades reales para resolver problemas complejos.
 
-!!! info "Escenario"
+!!! note "laboratorio"
 
-    La regla parece sencilla: "Todo ocurre dentro del sandbox."
+    La regla parece sencilla: "Todo ocurre dentro del sandbox"... no puede pasar nada.
 
 Los agentes disponen de herramientas, objetivos y recursos limitados.
 - No tienen acceso a Internet.
@@ -46,7 +46,7 @@ Sin embargo, nadie les ha proporcionado un canal oficial para hacerlo.
 
 Y aun así... parecen colaborar.
 
-__Narrador__
+__ejemplo__
 
 Imaginad que se prohíben todos los sistemas de mensajería en un centro educativo.
 
@@ -60,21 +60,27 @@ __Narrador__
 
 Los agentes habían encontrado una forma alternativa de dejar información para los demás.
 
+Utilizaron un repositorio de Artifactory como si fuera un tablón de anuncios o un foro improvisado.
+
+!!! info "Artifactory"
+
+    es un repositorio de *artefactos* software, suele almacenar:
+    - Imágenes Docker.
+    - Librerías Java.
+    - Ficheros de compilación.
+    - Dependencias de proyectos.
+    - Binarios listos para desplegar.
+
+En lugar de almacenar únicamente binarios, librerías o paquetes de código, empezaron a subir y modificar archivos con mensajes de texto, descripciones o metadatos para intercambiar información, coordinar sus ataques y compartir tácticas sin que los ingenieros humanos se dieran cuenta inicialmente.
+
+Incluso llegaron a saturarlo tanto que provocaron un fallo general (crash) en el sistema.
+
 No habían roto ninguna regla explícita.
 
 Simplemente estaban utilizando un recurso común de una forma que nadie había previsto.
 
 !!! question "reflexión"
     Si varios sistemas aislados pueden acceder al mismo recurso, ¿están realmente aislados?
-
-> 💡 ¿Qué es __Artifactory__?
->  es un repositorio de *artefactos* software, suele almacenar:
->- Imágenes Docker.
->- Paquetes npm.
->- Librerías Java.
->- Ficheros de compilación.
->- Dependencias de proyectos.
->- Binarios listos para desplegar.
 
 # Acto III. La inteligencia colectiva
 ## Escena 3. El relevo invisible
