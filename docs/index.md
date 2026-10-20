@@ -8,7 +8,7 @@
   
     Administración de Sistemas.
 
-    <a href="sistemas/index.md" markdown>Ver contenidos →</a>
+    <a href="sistemas/" markdown>Ver contenidos →</a>
 
 </div>
 
@@ -20,7 +20,7 @@
   
     Ciberseguridad.
 
-    <a href="ciberseguridad/index.md" markdown>Ver contenidos →</a>
+    <a href="ciberseguridad/" markdown>Ver contenidos →</a>
 
 </div>
 
@@ -32,7 +32,7 @@
 
     MikroTik, WireGuard, IPv6 y administración de redes.
 
-    <a href="redes/index.md" markdown>Acceder →</a>
+    <a href="redes/" markdown>Acceder →</a>
 
 </div>
 
@@ -42,9 +42,9 @@
 
     ## Dockers
 
-    Linux, Windows, Proxmox, Docker y automatización.
+    Virtualización, Proxmox, Docker y automatización.
 
-    <a href="docker/index.md" markdown>Ver contenidos →</a>
+    <a href="docker/" markdown>Ver contenidos →</a>
     
 </div>
 
