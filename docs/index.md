@@ -1,14 +1,26 @@
-## Contenidos
+# 🍭 Contenidos
+
+<div class="grid cards" markdown>
+
+- :material-console:
+
+    ## sistemas
+  
+    Administración de Sistemas.
+
+    <a href="sistemas/index.md" markdown>Ver contenidos →</a>
+
+</div>
 
 <div class="grid cards" markdown>
 
 - :material-shield-lock:
 
-    ## IA
+    ## ciberseguridad
   
-    Inteligencia Artificial y modelo.
+    Ciberseguridad.
 
-    <a href="AI/" markdown>Ver contenidos →</a>
+    <a href="ciberseguridad/index.md" markdown>Ver contenidos →</a>
 
 </div>
 
@@ -20,19 +32,19 @@
 
     MikroTik, WireGuard, IPv6 y administración de redes.
 
-    <a href="redes/" markdown>Acceder →</a>
+    <a href="redes/index.md" markdown>Acceder →</a>
 
 </div>
 
 <div class="grid cards" markdown>
 
-- :material-desktop-classic:
+- :material-docker:
 
     ## Dockers
 
     Linux, Windows, Proxmox, Docker y automatización.
 
-    <a href="docker/" markdown>Acceder →</a>
+    <a href="docker/index.md" markdown>Ver contenidos →</a>
     
 </div>
 
@@ -44,6 +56,6 @@
 
     AWS y servicios en la nube.
 
-    <a href="redes/" markdown>Ver contenidos →</a>
+    <a href="redes/index.md" markdown>Ver contenidos →</a>
 
 </div>
