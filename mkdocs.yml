@@ -58,12 +58,14 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
-  - 🏠 Inicio: index.md
+  - 🍭 inicio: index.md
 
-  - 💻 Sistemas: sistemas/index.md
+  - 💻 sistemas: sistemas/index.md
   
-  - 🛡️ Ciberseguridad: ciberseguridad/index.md
+  - 🛡️ ciberseguridad: ciberseguridad/index.md
 
-  - 🌐 Redes: redes/index.md
+  - 🌐 redes: redes/index.md
 
-  - 🐳 Docker: docker/index.md
+  - 🐳 docker: docker/index.md
+
+  - ☁️ cloud: cloud/index.md
