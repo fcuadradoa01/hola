@@ -17,6 +17,8 @@ theme:
     - search.highlight
     - toc.integrate
     - content.code.annotate
+    - content.tooltips
+    - content.tabs.link
   palette:
     - scheme: default
       primary: blue grey
