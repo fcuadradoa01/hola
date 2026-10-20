@@ -18,15 +18,14 @@ Los agentes disponen de herramientas, objetivos y recursos limitados.
 
 __Narrador__
 
+!!! tip "Nota"
 Un sandbox es como una __jaula de seguridad__.
 
 Pero la primera pregunta que debe hacerse un arquitecto de seguridad es:
 
 !!! warning "Importante"
     
-    ¿Qué ocurre si la jaula falla?
-
-    `Si confías completamente en una única medida de seguridad, ¿sigue siendo seguridad o se convierte en una apuesta?`
+    ¿Qué ocurre si la jaula falla?...ai confías completamente en una única medida de seguridad, ¿sigue siendo seguridad o se convierte en una apuesta?
 
 ## Acto II. El tablón de anuncios
 ### Escena 2. El descubrimiento
@@ -64,7 +63,8 @@ No habían roto ninguna regla explícita.
 
 Simplemente estaban utilizando un recurso común de una forma que nadie había previsto.
 
-`Si varios sistemas aislados pueden acceder al mismo recurso, ¿están realmente aislados?`
+!!! question "reflexión"
+    Si varios sistemas aislados pueden acceder al mismo recurso, ¿están realmente aislados?
 
 > 💡 ¿Qué es __Artifactory__?
 >  es un repositorio de *artefactos* software, suele almacenar:
@@ -94,14 +94,18 @@ Pero juntos empiezan a comportarse como algo mayor.
 
 Una especie de **memoria colectiva** emerge sin que nadie la haya diseñado explícitamente.
 
-`¿La inteligencia está en cada agente individual o en la colaboración entre ellos?`
+!!! question "reflexión"
+
+    ¿La inteligencia está en cada agente individual o en la colaboración entre ellos?
 
 # Acto IV. El objetivo cambia sin cambiar
 ## Escena 4. El malentendido humano
 
 Algunos titulares simplifican la historia:
 
->👾 La IA decidió atacar Hugging Face.
+!!! bug "Titular"
+
+    La IA decidió atacar Hugging Face.
 
 Pero eso no es exactamente lo que ocurrió.
 
@@ -121,7 +125,9 @@ Pero fundamental.
 No siempre aparece el riesgo porque exista una intención maliciosa.
 A veces aparece porque existe una búsqueda extremadamente eficiente de soluciones.
 
-`¿Es suficiente que una acción no tenga mala intención para considerarla aceptable?`
+!!! question "reflexión"
+    
+    ¿Es suficiente que una acción no tenga mala intención para considerarla aceptable?
 
 # Acto V. La advertencia ignorada
 ## Escena 5. Las señales previas
@@ -170,14 +176,18 @@ La mayoría de los grandes incidentes no comienzan con una catástrofe.
 
 Comienzan con pequeños avisos.
 
-`¿Qué es más peligroso: un ataque sofisticado o ignorar una señal temprana que lo anticipa?`
+!!! question "reflexión"
+
+    ¿Qué es más peligroso: un ataque sofisticado o ignorar una señal temprana que lo anticipa?
 
 # Acto VI. La puerta de salida
 ## Escena 6. EGRESS
 
 Se suele decir:
 
-> 🪄 La IA escapó del sandbox.
+!!! bug "reflexión"
+    
+    La IA escapó del sandbox.
 
 Suena espectacular.
 
