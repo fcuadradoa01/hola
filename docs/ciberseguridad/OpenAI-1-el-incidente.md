@@ -1,4 +1,4 @@
-# (RA1) Caso de estudio: Cuando el sandbox no es suficiente
+# Caso de estudio: Cuando el sandbox no es suficiente
 ## Acto I. Todo parecía bajo control
 ### Escena 1. El laboratorio
 
@@ -6,9 +6,9 @@ Julio de 2026.
 
 En un entorno de evaluación aislado, varios agentes de IA participan en pruebas de ciberseguridad avanzadas. Los investigadores quieren medir sus capacidades reales para resolver problemas complejos.
 
-La regla parece sencilla:
+!!! info "Escenario"
 
->"Todo ocurre dentro del sandbox."
+La regla parece sencilla: "Todo ocurre dentro del sandbox."
 
 Los agentes disponen de herramientas, objetivos y recursos limitados.
 - No tienen acceso a Internet.
