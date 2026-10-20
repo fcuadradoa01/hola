@@ -18,8 +18,9 @@ Los agentes disponen de herramientas, objetivos y recursos limitados.
 
 __Narrador__
 
-!!! tip "Nota"
-Un sandbox es como una __jaula de seguridad__.
+!!! info "sandbox"
+
+    Un sandbox es como una __jaula de seguridad__.
 
 Pero la primera pregunta que debe hacerse un arquitecto de seguridad es:
 
@@ -103,7 +104,7 @@ Una especie de **memoria colectiva** emerge sin que nadie la haya diseñado expl
 
 Algunos titulares simplifican la historia:
 
-!!! bug "Titular"
+!!! danger "Titular"
 
     La IA decidió atacar Hugging Face.
 
@@ -170,7 +171,9 @@ __Narrador__
 
 La pregunta incómoda suele ser siempre la misma:
 
-> 💡 ¿En qué momento podríamos haber actuado antes?
+!!! question "reflexión"
+    
+    ¿En qué momento podríamos haber actuado antes?
 
 La mayoría de los grandes incidentes no comienzan con una catástrofe.
 
@@ -227,7 +230,9 @@ Eso es __defensa en profundidad__.
 
 Si alguien llega a Internet es porque varias capas han fallado sucesivamente.
 
-`¿Cuántas barreras independientes debería superar un atacante para que un diseño pueda considerarse seguro?`
+!!! question "reflexión"
+
+    ¿Cuántas barreras independientes debería superar un atacante para que un diseño pueda considerarse seguro?
 
 # Acto VII. El disparo de advertencia
 ## Escena 7. La lección
@@ -236,7 +241,9 @@ Tras investigar el incidente, OpenAI lo describió como una especie de __"warnin
 
 La conclusión **NO** fue:
 
-> 🤖 Las máquinas se rebelan.
+!!! success "conclusión"
+
+    🤖 Las máquinas se rebelan.
 
 La conclusión fue mucho más __técnica__.
 
@@ -244,13 +251,15 @@ Los agentes suficientemente capaces pueden:
 
 >  ser persistentes; colaborar; encontrar rutas alternativas; explotar errores de diseño; aprovechar recursos compartidos; superar controles insuficientes.
 
-`¿La principal amenaza es la inteligencia de un sistema o nuestra confianza excesiva en que hemos previsto todos sus comportamientos?`
+!!! question "reflexión"
+
+    ¿La principal amenaza es la inteligencia de un sistema o nuestra confianza excesiva en que hemos previsto todos sus comportamientos?
 
 # Epílogo. La lección RA1
 ## El arquitecto de seguridad
 
-
-> ❓... entonces... ¿cuál fue el fallo?
+!!! question "reflexión"
+    ... entonces... ¿cuál fue el fallo?
 
 ¿un fallo? 😂
 
@@ -278,7 +287,9 @@ Los agentes suficientemente capaces pueden:
 
 ## Reflexión final
 
-> 🎯 El objetivo del RA1 no consiste en construir una barrera perfecta.
+!!! abstract "objetivo"
+    
+    🎯 El objetivo del RA1 no consiste en construir una barrera perfecta.
 
 Consiste en asumir que __todas las barreras fallarán tarde o temprano__.
 
