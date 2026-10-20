@@ -1,6 +1,4 @@
-# ciberseguridad
-
-# :material-shield-lock: Ciberseguridad
+# 🛡️ ciberseguridad
 
 <div class="grid cards" markdown>
 
@@ -12,11 +10,7 @@
 
     [Abrir documento](OpenAI-1-el-incidente.md)
 
-</div>
-
-<div class="grid cards" markdown>
-
--   :material-cog: **2 OpenAI Técnicas y medidas**
+-   :material-shield-lock: **2 OpenAI Técnicas y medidas**
 
     ---
 
