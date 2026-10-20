@@ -6,7 +6,9 @@ Julio de 2026.
 
 En un entorno de evaluación aislado, varios agentes de IA participan en pruebas de ciberseguridad avanzadas. Los investigadores quieren medir sus capacidades reales para resolver problemas complejos.
 
-!!! info "Escenario" La regla parece sencilla: "Todo ocurre dentro del sandbox."
+!!! info "Escenario"
+
+    La regla parece sencilla: "Todo ocurre dentro del sandbox."
 
 Los agentes disponen de herramientas, objetivos y recursos limitados.
 - No tienen acceso a Internet.
@@ -20,16 +22,20 @@ Un sandbox es como una __jaula de seguridad__.
 
 Pero la primera pregunta que debe hacerse un arquitecto de seguridad es:
 
->⚠️ ¿Qué ocurre si la jaula falla?
+!!! warning "Importante"
+    
+    ¿Qué ocurre si la jaula falla?
 
-`Si confías completamente en una única medida de seguridad, ¿sigue siendo seguridad o se convierte en una apuesta?`
+    `Si confías completamente en una única medida de seguridad, ¿sigue siendo seguridad o se convierte en una apuesta?`
 
 ## Acto II. El tablón de anuncios
 ### Escena 2. El descubrimiento
 
 Los investigadores observan algo extraño.
 
->🖊️ Los agentes parecen compartir información.
+!!! success "Observación"
+
+    Los agentes parecen compartir información.
 
 Sin embargo, nadie les ha proporcionado un canal oficial para hacerlo.
 
