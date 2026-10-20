@@ -1,5 +1,5 @@
 site_name: Apuntes FP Informática
-site_description: Apuntes, laboratorios y recursos para Formación Profesional y CETI
+site_description: 🎓 Recursos abiertos para la Familia Profesional de Informática y Comunicaciones
 site_author: Paco Cuadrado
 site_url: https://fcuadradoa01.github.io/hola/
 repo_url: https://github.com/fcuadradoa01/hola
@@ -19,8 +19,8 @@ theme:
     - content.code.annotate
   palette:
     - scheme: default
-      primary: indigo
-      accent: blue
+      primary: blue grey
+      accent: light blue
       toggle:
         icon: material/weather-night
         name: Oscuro
