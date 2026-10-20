@@ -4,9 +4,13 @@
 
 - :material-shield-lock:
 
-    ## Ciberseguridad
+    ## IA
+  
+    Inteligencia Artificial y modelo.
 
-    Bastionado de redes y sistemas, hardening y laboratorios prácticos.
+</div>
+
+<div class="grid cards" markdown>
 
 - :material-lan:
 
@@ -14,16 +18,28 @@
 
     MikroTik, WireGuard, IPv6 y administración de redes.
 
+    <a href="redes/" markdown>Acceder →</a>
+
+</div>
+
+<div class="grid cards" markdown>
+
 - :material-desktop-classic:
 
-    ## Sistemas
+    ## Dockers
 
     Linux, Windows, Proxmox, Docker y automatización.
+
+</div>
+
+<div class="grid cards" markdown>
 
 - :material-cloud:
 
     ## Cloud
 
     AWS y servicios en la nube.
+
+   <a href="redes/" markdown>Acceder →</a>
 
 </div>
