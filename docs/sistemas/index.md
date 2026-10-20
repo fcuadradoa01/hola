@@ -1,11 +1,13 @@
-# sistemas
+# :material-server: Sistemas
 
 <div class="grid cards" markdown>
 
-- :material-console: no-root
-  
-    No Root doc.
+-   :material-console: **No Root**
 
-    <a href="no-root.md" markdown>Ver contenido →</a>
+    ---
+
+    Riesgos de trabajar continuamente como root y uso correcto de sudo.
+
+    [Abrir documento](no-root.md)
 
 </div>
