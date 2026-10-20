@@ -8,6 +8,8 @@
   
     Inteligencia Artificial y modelo.
 
+    <a href="AI/" markdown>Ver contenidos →</a>
+
 </div>
 
 <div class="grid cards" markdown>
@@ -30,6 +32,8 @@
 
     Linux, Windows, Proxmox, Docker y automatización.
 
+    <a href="docker/" markdown>Acceder →</a>
+    
 </div>
 
 <div class="grid cards" markdown>
@@ -40,6 +44,6 @@
 
     AWS y servicios en la nube.
 
-   <a href="redes/" markdown>Acceder →</a>
+    <a href="redes/" markdown>Ver contenidos →</a>
 
 </div>
