@@ -60,14 +60,8 @@ markdown_extensions:
 nav:
   - 🏠 Inicio: index.md
 
-  - 🤖 IA:
-      - OpenAI: AI/OpenAI-1-el-incidente.md
-      - Técnicas y Medidas: AI/OpenAI-2-tecnicas-medidas.md
+  - 🤖 IA: AI/index.md
 
-  - 🌐 Redes:
-      - Guía configuración de la red en Ubuntu Server: redes/guia-config-red-ubuntu.md
-      - Laboratorio MikroTik Hardening: redes/lab-mikrotik-hardening.md
+  - 🌐 Redes: redes/index.md
 
-  - 🐳 Docker:
-      - Laboratorio Wordpress: docker/lab-docker-wordpress-mariadb.md
-      - Portainer: docker/lab-portainer.md
+  - 🐳 Docker: docker/index.md
