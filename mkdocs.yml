@@ -60,7 +60,9 @@ markdown_extensions:
 nav:
   - 🏠 Inicio: index.md
 
-  - 🤖 IA: AI/index.md
+  - 💻 Sistemas: sistemas/index.md
+  
+  - 🛡️ Ciberseguridad: ciberseguridad/index.md
 
   - 🌐 Redes: redes/index.md
 
