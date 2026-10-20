@@ -1,31 +1,29 @@
-# FP Informática y Comunicaciones
-
-Bienvenido al repositorio de apuntes, laboratorios guiados y recursos prácticos para la familia profesional de Informática y Comunicaciones.
-
 ## Contenidos
 
-### Ciberseguridad (CETI)
-- Bastionado de Redes y Sistemas
-- Laboratorios prácticos
-- Guías de securización
+<div class="grid cards" markdown>
 
-### Redes
-- MikroTik
-- WireGuard
-- IPv6
+- :material-shield-lock:
 
-### Sistemas
-- Linux
-- Windows
-- Dockers
-- Proxmox
-- Automatización
+    ## Ciberseguridad
 
-### Cloud
- - AWS
+    Bastionado de redes y sistemas, hardening y laboratorios prácticos.
 
----
+- :material-lan:
 
-## Autor
+    ## Redes
 
-Paco Cuadrado ```fcuadradoa01@educantabria.es```
+    MikroTik, WireGuard, IPv6 y administración de redes.
+
+- :material-desktop-classic:
+
+    ## Sistemas
+
+    Linux, Windows, Proxmox, Docker y automatización.
+
+- :material-cloud:
+
+    ## Cloud
+
+    AWS y servicios en la nube.
+
+</div>
