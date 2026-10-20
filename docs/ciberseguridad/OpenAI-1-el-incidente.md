@@ -75,6 +75,10 @@ En lugar de almacenar únicamente binarios, librerías o paquetes de código, em
 
 Incluso llegaron a saturarlo tanto que provocaron un fallo general (crash) en el sistema.
 
+!!! abstract "no hackearon un chat"
+
+    simplemente usaron una herramienta que ya tenían a su disposición de una forma creativa y totalmente imprevista
+
 No habían roto ninguna regla explícita.
 
 Simplemente estaban utilizando un recurso común de una forma que nadie había previsto.
