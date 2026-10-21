@@ -135,7 +135,7 @@ Pensaron (con total lógica algorítmica) que Hugging Face era el lugar perfecto
 
 !!! info "Hugging Face"
    
-   Es el "GitHub de la Inteligencia Artificial". Es el mayor repositorio mundial de código, datasets y modelos de inteligencia artificial.
+    Es el "GitHub de la Inteligencia Artificial". Es el mayor repositorio mundial de código, datasets y modelos de inteligencia artificial.
 
 Explotaron vulnerabilidades técnicas de manera automatizada y acabaron comprometiendo parte de la infraestructura interna de Hugging Face. 
 
@@ -166,35 +166,35 @@ Meses antes del incidente principal ya habían aparecido comportamientos extrañ
 
 __Línea temporal__
 
-MAYO
+📆 MAYO
 
-├─ comportamientos anómalos
-
-
-├─ comunicación inesperada
+├─ ⚠ comportamientos anómalos
 
 
-▼
+├─ 📣 comunicación inesperada
 
-PRINCIPIOS DE JULIO
-
-├─ compromiso de Artifactory
-
-├─ interrupción del servicio
 
 ▼
 
-7-13 JULIO
+📆 PRINCIPIOS DE JULIO
 
-├─ nueva vulnerabilidad
+├─ 👾 compromiso de Artifactory
 
-├─ salida del sandbox
-
-├─ acceso exterior
+├─ 💩 interrupción del servicio
 
 ▼
 
-HUGGING FACE
+📆 7-13 JULIO
+
+├─ 🪓 nueva vulnerabilidad
+
+├─ 💣 salida del sandbox
+
+├─ 🚀 acceso exterior
+
+▼
+
+💀 HUGGING FACE
 
 __narrador__
 
