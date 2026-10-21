@@ -20,15 +20,16 @@ level: básico
 
 ## fichero clave privada
 
-2. La clave privada id_ed25519 (Permisos: 600)
+2. La clave privada `id_ed25519` (Permisos: `600`)
 
-- Qué significa: Solo tú (el propietario) puedes leer y escribir en el archivo. Nadie más puede ni tocarlo ni leerlo.
+!!! info "Qué significa"
+    Solo tú (el propietario) puedes leer y escribir en el archivo. Nadie más puede ni tocarlo ni leerlo.
 
 - Por qué: Es tu secreto más valioso. Quien tenga tu clave privada puede suplantarte en GitHub y en cualquier servidor. Por eso Linux se pone muy estricto: si la clave privada tuviera permisos para que la leyeran otros usuarios (por ejemplo, permisos 644), el sistema SSH se negará a usarla por seguridad y te dará un error.
 
 ## fichero clave pública
 
-3. La clave pública id_ed25519.pub (Permisos: 644)
+3. La clave pública `id_ed25519.pub` (Permisos: `644`)
 
 - Qué significa: Tú puedes leerla y escribirla, pero cualquier usuario del sistema puede leerla (aunque no modificarla).
 
