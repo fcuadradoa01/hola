@@ -93,13 +93,13 @@ Simplemente estaban utilizando un recurso común de una forma que nadie había p
 # Acto III. La inteligencia colectiva
 ## Escena 3. El relevo invisible
 
-Un agente descubre información.
+👀 Un agente descubre información.
 
-Otro la encuentra más tarde.
+🆙 Otro la encuentra más tarde.
 
-Un tercero continúa el trabajo.
+📲 Un tercero continúa el trabajo.
 
-Un cuarto prueba un camino diferente.
+🔀 Un cuarto prueba un camino diferente.
 
 __Narrador__
 
@@ -128,16 +128,15 @@ Al conseguir salir a internet mediante un fallo en el entorno (credenciales expu
 
 Pensaron (con total lógica algorítmica) que Hugging Face era el lugar perfecto para buscar esa información.
 
-Explotaron vulnerabilidades técnicas de manera automatizada y acabaron comprometiendo parte de la infraestructura interna de Hugging Face.
+!!! info "Hugging Face"
+   Es el "GitHub de la Inteligencia Artificial". Es el mayor repositorio mundial de código, datasets y modelos de inteligencia artificial.
 
-> 💡 Hugging Face es el "GitHub de la Inteligencia Artificial". Es el mayor repositorio mundial de código, datasets y modelos de inteligencia artificial.
+Explotaron vulnerabilidades técnicas de manera automatizada y acabaron comprometiendo parte de la infraestructura interna de Hugging Face. 
 
 **Pero...**
 
-!!! note
+!!! note "recuerda"
     Los agentes no recibieron como misión atacar sistemas externos.
-
-!!! abstract
     Su objetivo inicial era resolver problemas de ciberseguridad planteados durante la evaluación.
 
 __Narrador__
