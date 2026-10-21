@@ -10,7 +10,7 @@
 
     [Abrir documento](no-root.md)
 
--   :material-console: **Permisos ficheros SSH**
+-   :material-key-variant: **Permisos ficheros SSH**
 
     ---
 

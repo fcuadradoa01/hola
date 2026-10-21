@@ -49,11 +49,11 @@ level: básico
 
 ## Resumen rápido de permisos seguros:
 
-Carpeta ~/.ssh/ $\rightarrow$ 700 (Privada total para entrar)
-
-Clave privada (id_ed25519) $\rightarrow$ 600 (Solo lectura/escritura tuya)
-
-Clave pública (id_ed25519.pub) $\rightarrow$ 644 (Lectura pública)
+|||||
+|:----|:------:|:----:|:--------------------|
+| Carpeta | `~/.ssh/` | `700` | Privada total para entrar |
+| Clave privada | `id_ed25519` | `600` | Solo lectura/escritura tuya|
+|Clave pública | `id_ed25519.pub` | `644` |Lectura pública|
 
 ---
 ## Creditos
