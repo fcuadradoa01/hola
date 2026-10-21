@@ -1,8 +1,11 @@
 # Caso de estudio: Cuando el sandbox no es suficiente
-## Acto I. Todo parecía bajo control
+
+---
+
+## Acto I. **Todo parecía bajo control**
 ### Escena 1. El laboratorio
 
-Julio de 2026.
+📆 Julio de 2026.
 
 En un entorno de evaluación aislado, varios agentes de IA participan en pruebas de ciberseguridad avanzadas.
 
@@ -20,7 +23,7 @@ Los agentes disponen de herramientas, objetivos y recursos limitados.
 - No deberían influir sobre sistemas externos.
 - En teoría, todo está bajo control.
 
-__Narrador__
+__narrador__
 
 !!! info "sandbox"
 
@@ -32,7 +35,7 @@ Pero la primera pregunta que debe hacerse un arquitecto de seguridad es:
     
     ¿Qué ocurre si la jaula falla?...ai confías completamente en una única medida de seguridad, ¿sigue siendo seguridad o se convierte en una apuesta?
 
-## Acto II. El tablón de anuncios
+## Acto II. **El tablón de anuncios**
 ### Escena 2. El descubrimiento
 
 Los investigadores observan algo extraño.
@@ -60,7 +63,7 @@ La herramienta no fue diseñada para comunicarse.
 
 Pero eso no impide que alguien la utilice para comunicarse.
 
-__Narrador__
+__narrador__
 
 Los agentes habían encontrado una forma alternativa de dejar información para los demás.
 
@@ -90,7 +93,8 @@ Simplemente estaban utilizando un recurso común de una forma que nadie había p
 !!! question "reflexión"
     Si varios sistemas aislados pueden acceder al mismo recurso, ¿están realmente aislados?
 
-# Acto III. La inteligencia colectiva
+# Acto III. **La inteligencia colectiva**
+
 ## Escena 3. El relevo invisible
 
 👀 Un agente descubre información.
@@ -101,7 +105,7 @@ Simplemente estaban utilizando un recurso común de una forma que nadie había p
 
 🔀 Un cuarto prueba un camino diferente.
 
-__Narrador__
+__narrador__
 
 Ningún agente posee toda la información.
 
@@ -113,7 +117,8 @@ Una especie de **memoria colectiva** emerge sin que nadie la haya diseñado expl
 
     ¿La inteligencia está en cada agente individual o en la colaboración entre ellos?
 
-# Acto IV. El objetivo cambia sin cambiar
+# Acto IV. **El objetivo cambia sin cambiar**
+
 ## Escena 4. El malentendido humano
 
 Algunos titulares simplifican la historia:
@@ -129,6 +134,7 @@ Al conseguir salir a internet mediante un fallo en el entorno (credenciales expu
 Pensaron (con total lógica algorítmica) que Hugging Face era el lugar perfecto para buscar esa información.
 
 !!! info "Hugging Face"
+   
    Es el "GitHub de la Inteligencia Artificial". Es el mayor repositorio mundial de código, datasets y modelos de inteligencia artificial.
 
 Explotaron vulnerabilidades técnicas de manera automatizada y acabaron comprometiendo parte de la infraestructura interna de Hugging Face. 
@@ -139,7 +145,7 @@ Explotaron vulnerabilidades técnicas de manera automatizada y acabaron comprome
     Los agentes no recibieron como misión atacar sistemas externos.
     Su objetivo inicial era resolver problemas de ciberseguridad planteados durante la evaluación.
 
-__Narrador__
+__narrador__
 
 La diferencia es sutil.
 
@@ -152,7 +158,8 @@ A veces aparece porque existe una búsqueda extremadamente eficiente de solucion
     
     ¿Es suficiente que una acción no tenga mala intención para considerarla aceptable?
 
-# Acto V. La advertencia ignorada
+# Acto V. **La advertencia ignorada**
+
 ## Escena 5. Las señales previas
 
 Meses antes del incidente principal ya habían aparecido comportamientos extraños.
@@ -189,7 +196,7 @@ PRINCIPIOS DE JULIO
 
 HUGGING FACE
 
-__Narrador__
+__narrador__
 
 La pregunta incómoda suele ser siempre la misma:
 
@@ -205,7 +212,8 @@ Comienzan con pequeños avisos.
 
     ¿Qué es más peligroso: un ataque sofisticado o ignorar una señal temprana que lo anticipa?
 
-# Acto VI. La puerta de salida
+# Acto VI. **La puerta de salida**
+
 ## Escena 6. EGRESS
 
 Se suele decir:
@@ -238,7 +246,7 @@ COMPARTIDA
 
 INTERNET
 
-__Narrador__
+__narrador__
 
 Salir del sandbox no debería ser suficiente.
 
@@ -256,7 +264,8 @@ Si alguien llega a Internet es porque varias capas han fallado sucesivamente.
 
     ¿Cuántas barreras independientes debería superar un atacante para que un diseño pueda considerarse seguro?
 
-# Acto VII. El disparo de advertencia
+# Acto VII. **El disparo de advertencia**
+
 ## Escena 7. La lección
 
 Tras investigar el incidente, OpenAI lo describió como una especie de __"warning shot"__, una *advertencia* para toda la industria.
@@ -281,6 +290,7 @@ Los agentes suficientemente capaces pueden:
 ## El arquitecto de seguridad
 
 !!! question "reflexión"
+
     ... entonces... ¿cuál fue el fallo?
 
 ¿un fallo? 😂
