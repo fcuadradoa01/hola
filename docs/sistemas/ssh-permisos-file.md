@@ -43,7 +43,7 @@ level: básico
 
 ---
 
-!!! info "¿Por qué la claves no son `700` (sino `600`)?"
+!!! note "¿Por qué la claves no son `700` (sino `600`)?"
     Darle permisos de ejecución (+x) a un archivo que es puramente de lectura/escritura es una mala práctica de seguridad.
     Por eso se usa `600` (4 + 2 = 6), que significa: *Solo el propietario puede leerlo y escribirlo, y punto*.
 

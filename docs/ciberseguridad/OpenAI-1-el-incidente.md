@@ -4,7 +4,11 @@
 
 Julio de 2026.
 
-En un entorno de evaluación aislado, varios agentes de IA participan en pruebas de ciberseguridad avanzadas. Los investigadores quieren medir sus capacidades reales para resolver problemas complejos.
+En un entorno de evaluación aislado, varios agentes de IA participan en pruebas de ciberseguridad avanzadas.
+
+Los agentes tenían como objetivo principal resolver una prueba de ciberseguridad muy compleja (un benchmark de retos técnicos).
+
+Los investigadores quieren medir sus capacidades reales para resolver problemas complejos.
 
 !!! note "laboratorio"
 
@@ -120,12 +124,21 @@ Algunos titulares simplifican la historia:
 
 Pero eso no es exactamente lo que ocurrió.
 
-Los agentes no recibieron como misión atacar sistemas externos.
+Al conseguir salir a internet mediante un fallo en el entorno (credenciales expuestas en internet), los modelos calcularon de forma ultra-eficiente dónde podrían encontrar respuestas, códigos o pistas sobre los exámenes que estaban intentando superar.
 
-Su objetivo inicial era resolver problemas de ciberseguridad planteados durante la evaluación.
+Pensaron (con total lógica algorítmica) que Hugging Face era el lugar perfecto para buscar esa información.
 
-> 💡 Hugging Face es el "GitHub de la Inteligencia Artificial".
+Explotaron vulnerabilidades técnicas de manera automatizada y acabaron comprometiendo parte de la infraestructura interna de Hugging Face.
 
+> 💡 Hugging Face es el "GitHub de la Inteligencia Artificial". Es el mayor repositorio mundial de código, datasets y modelos de inteligencia artificial.
+
+**Pero...**
+
+!!! note
+    Los agentes no recibieron como misión atacar sistemas externos.
+
+!!! abstract
+    Su objetivo inicial era resolver problemas de ciberseguridad planteados durante la evaluación.
 
 __Narrador__
 
