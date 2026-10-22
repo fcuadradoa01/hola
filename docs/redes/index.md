@@ -2,6 +2,14 @@
 
 <div class="grid cards" markdown>
 
+-   :material-input: **Apuntes de Redes: TCP vs UDP, Puertos y Sockets**
+
+    ---
+
+    Diferencia fundamental entre los protocolos TCP y UDP, cómo se clasifican los puertos de red.
+
+    [:octicons-arrow-right-24: Abrir guía](tcp-udp-sockets.md)
+
 -   :material-ubuntu: **Configuración de red en Ubuntu**
 
     ---
