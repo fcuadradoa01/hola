@@ -2,7 +2,7 @@
 
 <div class="grid cards" markdown>
 
--   :material-input: **Apuntes de Redes: TCP vs UDP, Puertos y Sockets**
+-   :material-dns: **Apuntes de Redes: TCP vs UDP, Puertos y Sockets**
 
     ---
 
