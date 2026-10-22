@@ -17,7 +17,7 @@ Este tutorial detalla la implementación práctica de las políticas de segurida
 
 ## Topología de Interfaces de Referencia
 
-*   `ether1`: WAN (Conectada a Internet / NAT)
+*   `ether1`: WAN (Conectada a Internet / NAT - IP por DHCP)
 *   `ether2`: LAN (Red de empleados, ej. `192.168.10.0/24`)
 *   `ether3`: DMZ (Servidores Ubuntu 24.04, ej. `192.168.20.0/24`)
 
@@ -61,12 +61,15 @@ set api disabled=yes
 set api-ssl disabled=yes
 set www-ssl disabled=yes
 ```
+!!! info "acceso al rúter"
+    solo permitimos acceso ssh (además cambiamos el puerto por defecto a otro `2222`), http `80` y winbox `8291`
 
 ### 2. Reglas de Firewall para el plano de control (`input`)
 
 **Las reglas del firewall se evalúan de arriba hacia abajo, una a una**. Cuando un paquete coincide con una regla que tiene una acción definitiva (`accept`, `drop`, `reject`), el proceso se detiene y no se siguen evaluando más reglas.
 
 En casi todos los rúters/firewalls verás algo parecido a:
+
 ```routeros
 accept established
 accept related
@@ -103,7 +106,8 @@ drop invalid
 - Invalid → aparece en mitad del salón sin haber entrado por la puerta.
 
 #### Concepto de firewall stateful (con estado)
-Que es precisamente una de las bases del diseño de planes de securización que trabajamos en el RA1.
+
+Que es precisamente una de las bases del diseño de planes de securización que trabajamos.
 
 ```routeros
 /ip firewall filter
@@ -128,12 +132,14 @@ add chain=input action=accept in-interface-list=WAN src-address=203.0.113.50 pro
 # 6. Denegar cualquier otro intento de acceso al router (Default Deny en Input)
 add chain=input action=drop comment="Bloquear resto de accesos al router"
 ```
-
+!!! success "administración"
+    Solo pertimos la administración del rúter desde una IP interna de nuestra LAN (nuestra red corporativa) y a través de la WAN solo por `ssh` y desde una IP especifica también que se supone tenemos controlada.
+    
 ---
 
-## Paso 3: Segmentación y Políticas de Tráfico (`Forward`)
+## Paso 3: Segmentación y Políticas de Tráfico (`forward`)
 
-Para el tráfico que atraviesa el router entre zonas, aplicamos una política estricta de denegación por defecto, permitiendo únicamente el flujo necesario.
+Para el tráfico que __atraviesa el router__ entre zonas, aplicamos una política estricta de denegación por defecto, permitiendo únicamente el flujo necesario.
 
 ### 1. Separar el NAT de la LAN y de la DMZ
 
