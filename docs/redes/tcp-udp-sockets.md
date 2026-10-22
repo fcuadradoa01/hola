@@ -40,25 +40,23 @@ Se organizan en tres categorías según la IANA (Internet Assigned Numbers Autho
 
 1. **Puertos Bien Conocidos (*Well-Known Ports*):**
 
-   * **Rango:** `0` al `1023`
+    - **Rango:** `0` al `1023`
 
-   * Son números fijos y estandarizados para servicios fundamentales de red.
+    - Son números fijos y estandarizados para servicios fundamentales de red.
 
 2. **Puertos Registrados (*Registered Ports*):**
 
-   * **Rango:** `1024` al `49151`
+    - **Rango:** `1024` al `49151`
 
-   * Reservados por organizaciones o empresas de software ante la IANA para aplicaciones específicas.
-
+    - Reservados por organizaciones o empresas de software ante la IANA para aplicaciones específicas.
 
 3. **Puertos Dinámicos / Privados (*Dynamic / Ephemeral Ports*):**
 
-   * **Rango:** `49152` al `65535`
+    - **Rango:** `49152` al `65535`
 
-   * Se asignan de forma temporal y dinámica por el sistema operativo.
+    - Se asignan de forma temporal y dinámica por el sistema operativo.
 
-   * *Ejemplo:* Cuando abres tu navegador para visitar una web, tu PC usa un puerto de este tipo como origen. Al cerrar la pestaña o terminar la sesión, el número vuelve a quedar libre.
-
+    - *Ejemplo:* Cuando abres tu navegador para visitar una web, tu PC usa un puerto de este tipo como origen. Al cerrar la pestaña o terminar la sesión, el número vuelve a quedar libre.
 
 !!! note "analogía"
     La analogía del edificio. La dirección IP es la dirección de un edificio de pisos. El número de puerto es el número del apartamento. ¡Sin el número de puerto, el cartero (tu tarjeta de red) no sabe a qué vecino entregarle la carta!
