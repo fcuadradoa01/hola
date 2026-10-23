@@ -30,7 +30,7 @@
 
     ---
 
-    Laboratorio de securización y hardening de routers MikroTik.
+    v2. Laboratorio de securización y hardening de routers MikroTik.
 
     [:octicons-arrow-right-24: Abrir laboratorio](lab-mikrotik-hardening-v2.md)
 

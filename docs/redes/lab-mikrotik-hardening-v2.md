@@ -24,12 +24,16 @@ Se requiere configurar las políticas de seguridad y direccionamiento en un rout
 * **ether2:** LAN (Red de empleados, `192.168.10.0/24`)
 * **ether3:** DMZ (Red de servidores, `192.168.11.0/24`)
 
+!!! info "IP de WAN"
+    Entendemos tiene un IP pública proporcionada por ISP.
+
+
 ### Políticas de Acceso Requeridas
 1. **Deshabilitación de servicios innecesarios:** Desactivar Telnet, FTP, API, API-SSL y WWW-SSL. Mantener únicamente SSH, Winbox y HTTP.
-2. **Acceso ICMP (Ping):** Permitir Ping hacia las IPs de las interfaces del router únicamente desde la **LAN** y desde la **DMZ**.
+2. **Acceso ICMP (Ping):** Permitir `ping` hacia las IPs de las interfaces del router únicamente desde la **LAN** y desde la **DMZ**.
 3. **Acceso al Router desde la WAN:** Permitir **únicamente Winbox** (`tcp/8291`) desde una IP pública autorizada concreta (ej. `203.0.113.50`).
 4. **Acceso al Router desde la LAN:** Permitir **SSH** (`tcp/2222`), **HTTP** (`tcp/80`) y **Winbox** (`tcp/8291`) exclusivamente desde la máquina del administrador de sistemas (`192.168.10.50`).
-5. **Acceso RDP desde la WAN (DNAT):** Redirigir el tráfico RDP (`tcp/3389`) procedente de la IP externa `80.80.3.1` hacia el equipo del Sysadmin (`192.168.10.50`).
+5. **Acceso RDP desde la WAN (DNAT):** Redirigir el tráfico RDP (`tcp/3389`) procedente de la IP externa (ej. `203.0.113.50`) hacia el equipo del Sysadmin (`192.168.10.50`).
 6. **Publicación Web en DMZ (DNAT):** Publicar el sitio WordPress ubicado en `192.168.11.11` haciéndolo accesible desde cualquier IP de la WAN a través del puerto público `8080` (redirigido al puerto `80` interno).
 
 ---
@@ -68,6 +72,9 @@ set api-ssl disabled=yes
 set www-ssl disabled=yes
 ```
 
+!!! info "SSH socket"
+    Cambiamos el puerto 'ssh' del rúter para que atienda por el '2222' en lugar del '22', oculatando puertos conocidos.
+
 ---
 
 ## Paso 3: Configuración de Traductores de Dirección (NAT)
@@ -86,6 +93,9 @@ add chain=dstnat in-interface-list=WAN src-address=80.80.3.1 protocol=tcp dst-po
 # 3. DNAT: Publicar WordPress desde cualquier origen WAN en puerto 8080 hacia la DMZ (192.168.11.11:80)
 add chain=dstnat in-interface-list=WAN protocol=tcp dst-port=8080 action=dst-nat to-addresses=192.168.11.11 to-ports=80 comment="DNAT: Publicar WordPress en DMZ"
 ```
+
+!!! info "internet"
+    Con esto conseguimos que tanto los equipos de **LAN** como los de la **DMZ** tengan salida a internet a traves de nuestro rúter.
 
 ---
 
@@ -119,6 +129,36 @@ add chain=input action=accept in-interface-list=LAN src-address=192.168.10.50 pr
 # 5. Política de Cierre (Default Deny en Input)
 add chain=input action=drop comment="Default Deny Input (Bloquear resto de accesos al router)"
 ```
+
+!!! info "¿Qué significa established?"
+    "Es una conversación ya iniciada." Sin esta regla cada paquete (cada vez que haces clic en winbox por ejemplo) tendría que recorrer todas las reglas del firewall.
+
+#### ¿Qué significa related?
+
+"Es una conversación secundaria derivada de otra." Son conexiones nuevas, pero que están relacionadas con otra ya existente.
+
+#### ¿Qué significa invalid?
+
+"Es alguien hablando en mitad de una conversación sin que nadie sepa quién es."
+
+**¿Por qué descartarlos?** Porque normalmente son:
+
+- Errores.
+- Ruido de red.
+- Tráfico malformado.
+- Intentos de evasión del firewall.
+- Escaneos
+
+... y no suelen tener utilidad legítima.
+
+
+#### ...con una analogía física:
+
+- New → llama a la puerta.
+- Established → está dentro de casa.
+- Related → viene acompañado de alguien que ya conocemos.
+- Invalid → aparece en mitad del salón sin haber entrado por la puerta.
+
 
 ---
 
