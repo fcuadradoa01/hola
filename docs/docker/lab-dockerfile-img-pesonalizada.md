@@ -24,13 +24,12 @@ Este tutorial guía paso a paso en la creación de una imagen Docker ligera y pe
 
 ---
 
-## 💡 Notas y Tips Conceptuales
-
-> 💡 **Nota conceptual:** Los comandos y principios explicados en esta guía corresponden a la especificación estándar de Docker. Por lo tanto, el flujo de trabajo (`build` $\rightarrow$ `run` $\rightarrow$ `verify`) es idéntico e independiente del sistema operativo o entorno donde se ejecute (Ubuntu, Debian, macOS, Windows Server o plataformas Cloud).
+!!! note "Nota conceptual"
+    Los comandos y principios explicados en esta guía corresponden a la especificación estándar de Docker. Por lo tanto, el flujo de trabajo (`build` $\rightarrow$ `run` $\rightarrow$ `verify`) es idéntico e independiente del sistema operativo o entorno donde se ejecute (Ubuntu, Debian, macOS, Windows Server o plataformas Cloud).
 
 ---
 
-## 📁 Preparación del Entorno de Trabajo
+## Preparación del Entorno de Trabajo
 
 Para mantener una estructura organizada, crearemos un directorio exclusivo para la compilación de la imagen. 
 
@@ -49,7 +48,7 @@ cd ~/laboratorio-docker
 
 ---
 
-## 🛠️ Estructura del Dockerfile Explicada Paso a Paso
+## Estructura del Dockerfile Explicada Paso a Paso
 
 Dentro del directorio `~/laboratorio-docker/`, creamos un archivo denominado **`Dockerfile`** (respetando la mayúscula inicial y sin extensión) con la siguiente estructura:
 
@@ -72,7 +71,7 @@ CMD ["httpd", "-D", "FOREGROUND"]
 
 ### Explicación de las Directivas:
 
-* **`FROM alpine:latest`**: Define la imagen base sobre la cual se construirá la nueva. En este caso se utiliza Alpine Linux por su tamaño reducido (apenas ~5 MB de base).
+* **`FROM alpine:latest`**: Define la imagen base sobre la cual se construirá la nueva. En este caso se utiliza ***Alpine Linux*** por su tamaño reducido (apenas ~5 MB de base).
 * **`RUN apk update && apk add --no-cache apache2`**: Ejecuta comandos durante el proceso de compilación (*buildtime*). Actualiza los repositorios de Alpine e instala Apache2. La opción `--no-cache` evita guardar archivos temporales del gestor de paquetes para optimizar el peso final de la imagen.
 * **`COPY index.html /var/www/localhost/htdocs/index.html`**: Copia el archivo `index.html` del directorio actual del anfitrión a la ruta raíz por defecto donde Apache2 busca los archivos web en Alpine.
 * **`EXPOSE 80`**: Sirve como documentación indicando que el contenedor escucha en el puerto `80`. *Nota: No publica el puerto por sí solo, requiere mapeo en el comando `docker run`*.

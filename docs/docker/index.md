@@ -8,7 +8,7 @@
 
     Guía paso a paso en la creación de una imagen Docker ligera y personalizada.
 
-    [Abrir documento](lab-dockerfile-img-personalizada.md)
+    [:octicons-arrow-right-24: Abrir laboratorio](lab-dockerfile-img-personalizada.md)
 
 
 -   :material-web-plus: **Laboratorio Wordpress sobre MariaDB**
@@ -17,7 +17,7 @@
 
     Laboratorio Wordpress sobre MariaDB.
 
-    [Abrir documento](lab-docker-wordpress-mariadb.md)
+     [:octicons-arrow-right-24: Abrir laboratorio](lab-docker-wordpress-mariadb.md)
 
 -   :material-console-network: **Laboratorio Portainer**
 
@@ -25,6 +25,6 @@
 
     Un contenedor que permite vía web administrar tu Docker-Engine.
 
-    [Abrir documento](lab-portainer.md)
+     [:octicons-arrow-right-24: Abrir laboratorio](lab-portainer.md)
 
 </div>
