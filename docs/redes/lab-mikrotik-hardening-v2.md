@@ -115,7 +115,7 @@ add chain=dstnat in-interface-list=WAN protocol=tcp dst-port=8080 action=dst-nat
 
 Protegemos el acceso directo al propio router.
 
-!!! note "Resumen del Firewall Stateful"
+!!! success "Resumen del Firewall Stateful"
     - **Established:** Conexiones en curso ya validadas.
     - **Related:** Conexiones secundarias derivadas de una activa.
     - **Invalid:** Paquetes fuera de secuencia o malformados (se descartan).
@@ -153,10 +153,15 @@ add chain=input action=drop comment="Default Deny Input (Bloquear resto de acces
 
 !!! success "¿Por qué descartarlos?"
     Porque normalmente son:
+
     - Errores / Tráfico malformado.
+    
     - Ruido de red.
+    
     - Intentos de evasión del firewall.
+    
     - Escaneos
+    
     ... y no suelen tener utilidad legítima.
 
 #### ...con una analogía física:
@@ -170,7 +175,7 @@ add chain=input action=drop comment="Default Deny Input (Bloquear resto de acces
 
 ## Paso 5: Reglas de Firewall para Tráfico en Tránsito (Cadena `FORWARD`)
 
-Controlamos el flujo de paquetes que **atraviesan** el rÚter entre las diferentes zonas.
+Controlamos el flujo de paquetes que **atraviesan** el rúter entre las diferentes zonas.
 
 ```routeros
 /ip firewall filter
