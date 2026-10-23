@@ -26,4 +26,13 @@
 
     [:octicons-arrow-right-24: Abrir laboratorio](lab-mikrotik-hardening.md)
 
+-   :material-router-network: **MikroTik Hardening**
+
+    ---
+
+    Laboratorio de securización y hardening de routers MikroTik.
+
+    [:octicons-arrow-right-24: Abrir laboratorio](lab-mikrotik-hardening-v2.md)
+
+
 </div>
