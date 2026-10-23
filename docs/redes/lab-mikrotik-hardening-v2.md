@@ -27,13 +27,18 @@ Se requiere configurar las políticas de seguridad y direccionamiento en un rout
 !!! info "IP de WAN"
     Entendemos tiene un IP pública proporcionada por ISP.
 
+### Host Clave en el Laboratorio:
+* **IP Autorizada WAN (Winbox Admin):** `203.0.113.50`
+* **IP Autorizada WAN (Cliente RDP):** `80.80.3.1`
+* **PC Sysadmin (LAN):** `192.168.10.50`
+* **Servidor WordPress (DMZ):** `192.168.11.11` (Puerto interno `80`)
 
 ### Políticas de Acceso Requeridas
 1. **Deshabilitación de servicios innecesarios:** Desactivar Telnet, FTP, API, API-SSL y WWW-SSL. Mantener únicamente SSH, Winbox y HTTP.
 2. **Acceso ICMP (Ping):** Permitir `ping` hacia las IPs de las interfaces del router únicamente desde la **LAN** y desde la **DMZ**.
 3. **Acceso al Router desde la WAN:** Permitir **únicamente Winbox** (`tcp/8291`) desde una IP pública autorizada concreta (ej. `203.0.113.50`).
 4. **Acceso al Router desde la LAN:** Permitir **SSH** (`tcp/2222`), **HTTP** (`tcp/80`) y **Winbox** (`tcp/8291`) exclusivamente desde la máquina del administrador de sistemas (`192.168.10.50`).
-5. **Acceso RDP desde la WAN (DNAT):** Redirigir el tráfico RDP (`tcp/3389`) procedente de la IP externa (ej. `203.0.113.50`) hacia el equipo del Sysadmin (`192.168.10.50`).
+5. **Acceso RDP desde la WAN (DNAT):** Redirigir el tráfico RDP (`tcp/3389`) procedente de la IP externa (ej. `80.80.3.1`) hacia el equipo del Sysadmin (`192.168.10.50`).
 6. **Publicación Web en DMZ (DNAT):** Publicar el sitio WordPress ubicado en `192.168.11.11` haciéndolo accesible desde cualquier IP de la WAN a través del puerto público `8080` (redirigido al puerto `80` interno).
 
 ---
@@ -147,7 +152,6 @@ add chain=input action=drop comment="Default Deny Input (Bloquear resto de acces
     - Escaneos
     ... y no suelen tener utilidad legítima.
 
-
 #### ...con una analogía física:
 
 - `New` → llama a la puerta.
@@ -183,3 +187,18 @@ add chain=forward action=drop in-interface-list=DMZ out-interface-list=LAN comme
 # 6. Política de Cierre (Default Deny en Forward)
 add chain=forward action=drop comment="Default Deny Forward"
 ```
+
+> ⚠️ **CONCEPTO CLAVE DE FLUJO DE PAQUETES:**
+> 
+> Es fundamental entender el orden de procesamiento en RouterOS cuando se publica un servicio:
+> 1. **Paso Previo (cadena `dstnat`):** Cuando entra un paquete desde Internet (ej. puerto `8080`), el router **primero aplica la regla de DNAT**. El paquete modifica su destino real a la IP privada y puerto definitivo (ej. `192.168.11.11:80`).
+> 2. **Paso Posterior (cadena `forward`):** Una vez traducido el paquete, este pasa al **Firewall Filter (`forward`)**, el cual evalúa si el paquete ya transformado se permite o no.
+> 
+> **Consecuencia práctica:** En las reglas del filtro `forward`, la IP de destino (`dst-address`) y el puerto (`dst-port`) deben coincidir con los **valores ya traducidos post-DNAT** (`192.168.11.11` y puerto `80`), NO con los datos originales solicitados públicamente (`8080`).
+
+## 📜 Créditos y Licencia
+
+* **Validación del Material:** Contenidos y prácticas validados por **Paco Cuadrado `fcuadradoa01@educantabria.es`**.
+* **Licencia:** Licencia Creative Commons Atribución 4.0 Internacional ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)).
+!!! note "CC BY 4.0"
+    *Se permite compartir, copiar, redistribuir, adaptar y transformar este material para cualquier propósito (incluso comercial), siempre que se reconozca y mencione adecuadamente la autoría original.*
