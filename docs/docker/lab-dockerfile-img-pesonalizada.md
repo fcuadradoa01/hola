@@ -33,7 +33,8 @@ Este tutorial guía paso a paso en la creación de una imagen Docker ligera y pe
 
 Para mantener una estructura organizada, crearemos un directorio exclusivo para la compilación de la imagen. 
 
-> **Requisito previo:** Se asume que el alumno ya dispone de un archivo `index.html` creado previamente en la raíz de su directorio personal (`~/index.html`).
+!!! info "Requisito previo"
+    Se asume que el alumno ya dispone de un archivo `index.html` creado previamente en la raíz de tu directorio personal (`~/index.html`).
 
 ```bash
 # 1. Crear directorio del proyecto
@@ -77,11 +78,10 @@ CMD ["httpd", "-D", "FOREGROUND"]
 * **`EXPOSE 80`**: Sirve como documentación indicando que el contenedor escucha en el puerto `80`. *Nota: No publica el puerto por sí solo, requiere mapeo en el comando `docker run`*.
 * **`CMD ["httpd", "-D", "FOREGROUND"]`**: Define el comando principal que se ejecutará automáticamente cuando el contenedor se inicie.
 
-> 💡 **Tip fundamental (¿Por qué `-D FOREGROUND`?):**
->
-> Un contenedor de Docker permanece en estado de ejecución (*running*) únicamente mientras su **proceso principal (PID 1)** siga activo. 
-> 
-> Por defecto, Apache se inicia como un servicio en segundo plano (*daemon/background*). Si no añadiéramos el parámetro `-D FOREGROUND`, el comando de inicio entregaría el control al sistema y finalizaría inmediatamente, provocando que **Docker detecte que la tarea terminó y apague el contenedor de forma automática**. Al obligar a Apache a ejecutarse en primer plano (*foreground*), mantenemos el contenedor activo de forma continua.
+!!! tip "¿Por qué `-D FOREGROUND`?"
+    Un contenedor de Docker permanece en estado de ejecución (*running*) únicamente mientras su **proceso principal (PID 1)** siga activo. 
+
+    Por defecto, Apache se inicia como un servicio en segundo plano (*daemon/background*). Si no añadiéramos el parámetro `-D FOREGROUND`, el comando de inicio entregaría el control al sistema y finalizaría inmediatamente, provocando que **Docker detecte que la tarea terminó y apague el contenedor de forma automática**. Al obligar a Apache a ejecutarse en primer plano (*foreground*), mantenemos el contenedor activo de forma continua.
 
 ---
 
@@ -106,7 +106,8 @@ Comprobamos que la nueva imagen está lista en el repositorio local de Docker:
 docker images
 ```
 
-*(Se observará que el tamaño total de la imagen es sumamente pequeño, rondando entre los 15 MB y 20 MB).*
+!!! info "tamaño"
+    Se observará que el tamaño total de la imagen es sumamente pequeño, rondando entre los `15MB` y `20MB`.
 
 ### 3. Desplegar el Contenedor (`docker run`)
 

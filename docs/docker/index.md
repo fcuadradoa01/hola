@@ -8,7 +8,7 @@
 
     Guía paso a paso en la creación de una imagen Docker ligera y personalizada.
 
-    [:octicons-arrow-right-24: Abrir laboratorio](lab-dockerfile-img-personalizada.md)
+    [:octicons-arrow-right-24: Abrir laboratorio](lab-dockerfile-img-pesonalizada.md)
 
 
 -   :material-web-plus: **Laboratorio Wordpress sobre MariaDB**
