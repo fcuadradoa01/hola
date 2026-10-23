@@ -200,13 +200,14 @@ add chain=forward action=drop in-interface-list=DMZ out-interface-list=LAN comme
 add chain=forward action=drop comment="Default Deny Forward"
 ```
 
-> ⚠️ **CONCEPTO CLAVE DE FLUJO DE PAQUETES:**
-> 
-> Es fundamental entender el orden de procesamiento en RouterOS cuando se publica un servicio:
-> 1. **Paso Previo (cadena `dstnat`):** Cuando entra un paquete desde Internet (ej. puerto `8080`), el router **primero aplica la regla de DNAT**. El paquete modifica su destino real a la IP privada y puerto definitivo (ej. `192.168.11.11:80`).
-> 2. **Paso Posterior (cadena `forward`):** Una vez traducido el paquete, este pasa al **Firewall Filter (`forward`)**, el cual evalúa si el paquete ya transformado se permite o no.
-> 
-> **Consecuencia práctica:** En las reglas del filtro `forward`, la IP de destino (`dst-address`) y el puerto (`dst-port`) deben coincidir con los **valores ya traducidos post-DNAT** (`192.168.11.11` y puerto `80`), NO con los datos originales solicitados públicamente (`8080`).
+!!! warning "CONCEPTO CLAVE DE FLUJO DE PAQUETES"
+    Es fundamental entender el orden de procesamiento en RouterOS cuando se publica un servicio:
+    
+    1. **Paso Previo (cadena `dstnat`):** Cuando entra un paquete desde Internet (ej. puerto `8080`), el router **primero aplica la regla de DNAT**. El paquete modifica su destino real a la IP privada y puerto definitivo (ej. `192.168.11.11:80`).
+    
+    2. **Paso Posterior (cadena `forward`):** Una vez traducido el paquete, este pasa al **Firewall Filter (`forward`)**, el cual evalúa si el paquete ya transformado se permite o no.
+
+    **Consecuencia práctica:** En las reglas del filtro `forward`, la IP de destino (`dst-address`) y el puerto (`dst-port`) deben coincidir con los **valores ya traducidos post-DNAT** (`192.168.11.11` y puerto `80`), NO con los datos originales solicitados públicamente (`8080`).
 
 ## 📜 Créditos y Licencia
 
