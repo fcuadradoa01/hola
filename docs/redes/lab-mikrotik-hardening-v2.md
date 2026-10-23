@@ -13,6 +13,11 @@ level: intermedio
 
 Este documento sirve como guía de laboratorio para la implementación práctica de políticas de seguridad (segmentación de red, filtrado entre zonas y endurecimiento del plano de control) en un entorno virtualizado con **MikroTik RouterOS 7**.
 
+
+!!! success "Nota conceptual"
+    Aunque la sintaxis y los comandos de este laboratorio son específicos de MikroTik RouterOS, los conceptos de segmentación por zonas, protección del plano de control (`input`), control de tránsito (`forward`), NAT y la política de seguridad *Default Deny* son universales y plenamente aplicables a cualquier otro firewall o router corporativo del mercado (Cisco, Fortinet, pfSense, Palo Alto, etc.).
+
+
 ---
 
 ## 🎯 Requisitos y Escenario del Laboratorio
@@ -58,6 +63,8 @@ add interface=ether1 list=WAN
 add interface=ether2 list=LAN
 add interface=ether3 list=DMZ
 ```
+!!! tip "Buena práctica"
+    Renombrar las interfaces del router acorde a su zona (WAN, LAN, DMZ) no es obligatorio, pero es una excelente práctica de documentación visual que previene errores humanos al aplicar políticas de seguridad.
 
 ---
 

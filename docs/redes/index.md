@@ -22,15 +22,9 @@
 
     ---
 
-    Laboratorio de securización y bastionado de routers MikroTik.
+    Laboratorio de securización y hardening de routers MikroTik.
 
-    [:octicons-arrow-right-24: Abrir laboratorio](lab-mikrotik-hardening.md)
-
--   :material-router-network: **MikroTik Hardening**
-
-    ---
-
-    v2. Laboratorio de securización y hardening de routers MikroTik.
+    Laboratorio guidado para la implementación práctica de políticas de seguridad y segmentación en RouterOS 7.
 
     [:octicons-arrow-right-24: Abrir laboratorio](lab-mikrotik-hardening-v2.md)
 
