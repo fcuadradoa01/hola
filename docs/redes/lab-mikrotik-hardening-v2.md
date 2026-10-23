@@ -73,7 +73,7 @@ set www-ssl disabled=yes
 ```
 
 !!! info "SSH socket"
-    Cambiamos el puerto 'ssh' del rúter para que atienda por el '2222' en lugar del '22', oculatando puertos conocidos.
+    Cambiamos el puerto `ssh` del rúter para que atienda por el `2222` en lugar del `22`, oculatando puertos conocidos.
 
 ---
 
@@ -99,7 +99,7 @@ add chain=dstnat in-interface-list=WAN protocol=tcp dst-port=8080 action=dst-nat
 
 ---
 
-## Paso 4: Reglas de Firewall para el Plano de Control (Cadena `Input`)
+## Paso 4: Reglas de Firewall para el Plano de Control (Cadena `INPUT`)
 
 Protegemos el acceso directo al propio router.
 
@@ -133,38 +133,33 @@ add chain=input action=drop comment="Default Deny Input (Bloquear resto de acces
 !!! info "¿Qué significa established?"
     "Es una conversación ya iniciada." Sin esta regla cada paquete (cada vez que haces clic en winbox por ejemplo) tendría que recorrer todas las reglas del firewall.
 
-#### ¿Qué significa related?
+!!! info "¿Qué significa related?"
+    "Es una conversación secundaria derivada de otra." Son conexiones nuevas, pero que están relacionadas con otra ya existente.
 
-"Es una conversación secundaria derivada de otra." Son conexiones nuevas, pero que están relacionadas con otra ya existente.
+!!! info  "¿Qué significa invalid?"
+    "Es alguien hablando en mitad de una conversación sin que nadie sepa quién es."
 
-#### ¿Qué significa invalid?
-
-"Es alguien hablando en mitad de una conversación sin que nadie sepa quién es."
-
-**¿Por qué descartarlos?** Porque normalmente son:
-
-- Errores.
-- Ruido de red.
-- Tráfico malformado.
-- Intentos de evasión del firewall.
-- Escaneos
-
-... y no suelen tener utilidad legítima.
+!!! success "¿Por qué descartarlos?"
+    Porque normalmente son:
+    - Errores / Tráfico malformado.
+    - Ruido de red.
+    - Intentos de evasión del firewall.
+    - Escaneos
+    ... y no suelen tener utilidad legítima.
 
 
 #### ...con una analogía física:
 
-- New → llama a la puerta.
-- Established → está dentro de casa.
-- Related → viene acompañado de alguien que ya conocemos.
-- Invalid → aparece en mitad del salón sin haber entrado por la puerta.
-
+- `New` → llama a la puerta.
+- `Established` → está dentro de casa.
+- `Related` → viene acompañado de alguien que ya conocemos.
+- `Invalid` → aparece en mitad del salón sin haber entrado por la puerta.
 
 ---
 
-## Paso 5: Reglas de Firewall para Tráfico en Tránsito (Cadena `Forward`)
+## Paso 5: Reglas de Firewall para Tráfico en Tránsito (Cadena `FORWARD`)
 
-Controlamos el flujo de paquetes que atraviesan el router entre las diferentes zonas.
+Controlamos el flujo de paquetes que **atraviesan** el rÚter entre las diferentes zonas.
 
 ```routeros
 /ip firewall filter
