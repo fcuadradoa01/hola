@@ -6,6 +6,7 @@ tags:
   - firewall
   - redes
   - segmentacion
+  - hardening
 level: intermedio
 ---
 
@@ -16,7 +17,6 @@ Este documento sirve como guía de laboratorio para la implementación práctica
 
 !!! success "Nota conceptual"
     Aunque la sintaxis y los comandos de este laboratorio son específicos de MikroTik RouterOS, los conceptos de segmentación por zonas, protección del plano de control (`input`), control de tránsito (`forward`), NAT y la política de seguridad *Default Deny* son universales y plenamente aplicables a cualquier otro firewall o router corporativo del mercado (Cisco, Fortinet, pfSense, Palo Alto, etc.).
-
 
 ---
 
@@ -106,19 +106,19 @@ add chain=dstnat in-interface-list=WAN src-address=80.80.3.1 protocol=tcp dst-po
 add chain=dstnat in-interface-list=WAN protocol=tcp dst-port=8080 action=dst-nat to-addresses=192.168.11.11 to-ports=80 comment="DNAT: Publicar WordPress en DMZ"
 ```
 
-!!! info "internet"
+!!! abstract "acceso a internet"
     Con esto conseguimos que tanto los equipos de **LAN** como los de la **DMZ** tengan salida a internet a traves de nuestro rúter.
 
 ---
 
-## Paso 4: Reglas de Firewall para el Plano de Control (Cadena `INPUT`)
+## Paso 4: Control de Acceso y Gestión del Router (Cadena `INPUT`)
 
 Protegemos el acceso directo al propio router.
 
-> **Resumen del Firewall Stateful:**
-> * **Established:** Conexiones en curso ya validadas.
-> * **Related:** Conexiones secundarias derivadas de una activa.
-> * **Invalid:** Paquetes fuera de secuencia o malformados (se descartan).
+!!! note "Resumen del Firewall Stateful"
+    - **Established:** Conexiones en curso ya validadas.
+    - **Related:** Conexiones secundarias derivadas de una activa.
+    - **Invalid:** Paquetes fuera de secuencia o malformados (se descartan).
 
 ```routeros
 /ip firewall filter
