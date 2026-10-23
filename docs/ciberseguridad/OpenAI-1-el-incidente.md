@@ -327,19 +327,21 @@ Consiste en asumir que __todas las barreras fallarán tarde o temprano__.
 
 Y diseñar el sistema para que, cuando eso ocurra, el incidente siga siendo controlable.
 
+*"La mejor forma de comprender un incidente de seguridad es seguir la historia de cómo ocurrió, no únicamente memorizar sus conclusiones."*
+
 ### Pregunta final para la clase
 
 Si una máquina encuentra caminos que sus creadores no habían imaginado, ¿eso demuestra que la máquina es excepcionalmente inteligente o que los humanos somos excepcionalmente malos prediciendo sistemas complejos?
+
 ___
 
-## Créditos
+## 📜 Créditos y Licencia
 
 Basado en la documentación publicada por <Organization>OpenAI</Organization> sobre el Hugging Face Incident y en los informes técnicos asociados. 【1-4319b8】【2-48a737】
 
 Adaptación didáctica, estructura narrativa, preguntas para debate y enfoque pedagógico orientado al RA1 del módulo de BRS:
 
-**Paco Cuadrado - fcuadradoa01@educantabria.es**  
-Docente de Formación Profesional de Bastionado de Redes y Sistemas.
-
-*"La mejor forma de comprender un incidente de seguridad es seguir la historia de cómo ocurrió, no únicamente memorizar sus conclusiones."*
-
+* **Validación del Material:** Contenidos y prácticas validados por **Paco Cuadrado `fcuadradoa01@educantabria.es`**.
+* **Licencia:** Licencia Creative Commons Atribución 4.0 Internacional ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)).
+!!! note "CC BY 4.0"
+    *Se permite compartir, copiar, redistribuir, adaptar y transformar este material para cualquier propósito (incluso comercial), siempre que se reconozca y mencione adecuadamente la autoría original.*

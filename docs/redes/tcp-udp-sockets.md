@@ -86,3 +86,12 @@ Se organizan en tres categorías según la IANA (Internet Assigned Numbers Autho
 * **DHCP (67/68):** Utiliza dos puertos distintos para separar el tráfico entre el servidor (puerto 67) y el cliente que solicita la IP (puerto 68).
 
 * **HTTPS (443):** Es el rey actual de la web. Si entras a un sitio web y ves el candadito en el navegador, estás comunicándote a través del puerto 443 cifrado con TLS/SSL.
+
+---
+
+## 📜 Créditos y Licencia
+
+* **Validación del Material:** Contenidos y prácticas validados por **Paco Cuadrado `fcuadradoa01@educantabria.es`**.
+* **Licencia:** Licencia Creative Commons Atribución 4.0 Internacional ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)).
+!!! note "CC BY 4.0"
+    *Se permite compartir, copiar, redistribuir, adaptar y transformar este material para cualquier propósito (incluso comercial), siempre que se reconozca y mencione adecuadamente la autoría original.*

@@ -56,9 +56,10 @@ level: básico
 |Clave pública | `id_ed25519.pub` | `644` |Lectura pública|
 
 ---
-## Creditos
 
-Elaborado por Paco Cuadrado `fcuadradoa01@educantabria.es`
+## 📜 Créditos y Licencia
 
-
-
+* **Validación del Material:** Contenidos y prácticas validados por **Paco Cuadrado `fcuadradoa01@educantabria.es`**.
+* **Licencia:** Licencia Creative Commons Atribución 4.0 Internacional ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)).
+!!! note "CC BY 4.0"
+    *Se permite compartir, copiar, redistribuir, adaptar y transformar este material para cualquier propósito (incluso comercial), siempre que se reconozca y mencione adecuadamente la autoría original.*

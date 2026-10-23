@@ -2,6 +2,15 @@
 
 <div class="grid cards" markdown>
 
+-   :material-docker: **Laboratorio Docker: Creación de Imagen Personalizada con Dockerfile**
+
+    ---
+
+    Guía paso a paso en la creación de una imagen Docker ligera y personalizada.
+
+    [Abrir documento](lab-dockerfile-img-personalizada.md)
+
+
 -   :material-web-plus: **Laboratorio Wordpress sobre MariaDB**
 
     ---
