@@ -88,7 +88,7 @@ Entonces aparece el famoso mensaje:
 ```
 The authenticity of host '192.168.1.10' can't be established.
 Are you sure you want to continue connecting?
-``` 
+```
 
 Si aceptamos: `yes`
 
@@ -141,8 +141,8 @@ Aunque alguien caputure los paquetes verá datos ilegibles.
 
 Ahora viene otra comprobación completamente diferente.
 
-El servidor ya sabe: `Soy el servidor legítimo
- 
+El servidor ya sabe: `Soy el servidor legítimo`
+
 Ahora pregunta: `¿Y tú quién eres?`
 
 Existen varios métodos.
