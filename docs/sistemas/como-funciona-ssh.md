@@ -92,7 +92,7 @@ Are you sure you want to continue connecting?
 
 Si aceptamos: `yes`
 
-la Host Key queda almacenada en: `~/.ssh/known_hosts`
+la `Host Key` queda almacenada en: `~/.ssh/known_hosts`
 
 !!! info "a saber"
     La `Host Key` es en realidad la clave pública del servidor, que se genero con la instalación del servicio `ssh`.
@@ -101,21 +101,23 @@ la Host Key queda almacenada en: `~/.ssh/known_hosts`
 ### Conexiones posteriores
 SSH compara: `Host Key recibida` vs `Host Key almacenada`
 
-Si coinciden: `Servidor verificado`
+- **Si coinciden:**
+    
+    `Servidor verificado` ✅
 
-**Si son distintas:**
+- **Si son distintas:**
 
-SSH sospecha un problema:
+    SSH sospecha un problema:
 
-`WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!`
+    `WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!` ⚠️
 
-Puede deberse a:
+    Puede deberse a:
 
-- Un ataque MITM.
-- Reinstalación del servidor.
-- Regeneración de claves SSH.
+    - Un ataque MITM.
+    - Reinstalación del servidor.
+    - Regeneración de claves SSH.
 
-Por seguridad, SSH detiene el proceso.
+    Por seguridad, `SSH` detiene el proceso. 🛑
 
 ## 4. Negociación de una clave temporal
 
