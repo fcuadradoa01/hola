@@ -25,18 +25,18 @@ Simplemente existe una conexión de red.
 Cliente -------------> Servidor
 ```
 
-## 2. El servidor presenta su Host Key
+## 2. El servidor presenta su `Host Key`
 
 El servidor tiene una pareja de claves propia:
 
 ```
-Clave privada del servidor
-Clave pública del servidor
+Clave privada del servidor (Host Key privada)
+Clave pública del servidor (Host Key pública)
 ```
 
 Por ejemplo:
 
-```Plain Text
+```
 /etc/ssh/ssh_host_ed25519_key
 /etc/ssh/ssh_host_ed25519_key.pub
 ```
@@ -48,13 +48,13 @@ La clave pública se envía al cliente.
 
 Aquí suele aparecer la primera confusión. No es:
 
-```Plain Text
+```
 Soy Francisco
 ```
 
 Sino:
 
-```Plain Text
+```
 Soy el servidor 192.168.1.10"
 ```
 
@@ -62,11 +62,11 @@ Soy el servidor 192.168.1.10"
 
 El cliente revisa:
 
-```Plain Text
+```
 ~/.ssh/known_hosts
 ```
 
-para comprobar si ya conoce esa Host Key.
+para comprobar si ya conoce esa `Host Key`.
 
 ### Primera conexión
 
@@ -146,7 +146,7 @@ El servidor almacena la pública en: `~/.ssh/authorized_keys`
 
 Si la prueba criptográfica es válida: `Usuario autenticado` y ya podemos ejecutar comandos.
 
-!!! info "resumen"
+!!! success "resumen"
     `known_hosts` sirve para verificar la identidad del servidor. 
     
     `authorized_keys` sirve para verificar la identidad del usuario.
