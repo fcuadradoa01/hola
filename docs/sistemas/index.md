@@ -10,6 +10,17 @@
 
     [Abrir documento](no-root.md)
 
+-   :material-key-variant: **Cómo funciona una conexión SSH paso a paso**
+
+    ---
+
+    Fases de una conexión SSH.
+
+    [Abrir documento](como-funciona-ssh.md)
+
+
+
+
 -   :material-key-variant: **Permisos ficheros SSH**
 
     ---
