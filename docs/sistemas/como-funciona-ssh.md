@@ -1,9 +1,20 @@
+---
+title: "Cómo funciona una conexión SSH paso a paso"
+tags:
+  - ssh
+  - cifrado
+  - conexion
+  - simetrico
+  - asimetrico
+level: basico
+---
+
 # Cómo funciona una conexión SSH paso a paso
 
 ## Tres preguntas muy simples:
-- **¿Con quién estoy hablando?** → Identidad del servidor.
-- **¿Cómo protegemos la conversación?** → Cifrado.
-- **¿Quién eres tú?** → Autenticación del usuario
+- 🖥️ **¿Con quién estoy hablando?** → Identidad del servidor.
+- 🔒 **¿Cómo protegemos la conversación?** → Cifrado.
+- 👤 **¿Quién eres tú?** → Autenticación del usuario
 
 ## 1. El cliente contacta con el servidor
 
@@ -74,7 +85,7 @@ No encuentra ninguna coincidencia.
 
 Entonces aparece el famoso mensaje:
 
-```Plain Text
+```
 The authenticity of host '192.168.1.10' can't be established.
 Are you sure you want to continue connecting?
 ``` 
@@ -82,6 +93,10 @@ Are you sure you want to continue connecting?
 Si aceptamos: `yes`
 
 la Host Key queda almacenada en: `~/.ssh/known_hosts`
+
+!!! info "a saber"
+    La `Host Key` es en realidad la clave pública del servidor, que se genero con la instalación del servicio `ssh`.
+
 
 ### Conexiones posteriores
 SSH compara: `Host Key recibida` vs `Host Key almacenada`
@@ -104,20 +119,21 @@ Por seguridad, SSH detiene el proceso.
 
 ## 4. Negociación de una clave temporal
 
-Ahora cliente y servidor crean una clave secreta compartida (`simetrica`).
+Ahora cliente y servidor crean una clave secreta compartida (`simétrica`).
 
 !!! tip "idea"
     Cliente y  Servidor - Generan la misma clave - ¡Sin enviarla por la red!
+    
     Esa clave se utilizará solamente durante esa sesión.
 
 ## 5. Se crea el canal cifrado
 
-Desde ese momento TODO viaja cifrado:
-- Usuario
-- Contraseña
-- Comandos
-- Archivos
-- Salidas por pantalla
+Desde ese momento **TODO** viaja cifrado:
+- 👤 Identidad del usuario.
+- 🔑 Credenciales de acceso.
+- ⌨️ Comandos enviados al servidor.
+- 📦 Archivos transferidos.
+- 📺 Resultados y salidas por pantalla.
 
 Aunque alguien caputure los paquetes verá datos ilegibles.
 
@@ -131,7 +147,7 @@ Ahora pregunta: `¿Y tú quién eres?`
 
 Existen varios métodos.
 
-### contraseña (simétrico)
+### Contraseña (simétrico)
 
 ```
 Usuario: fcuadradoa01
@@ -152,3 +168,12 @@ Si la prueba criptográfica es válida: `Usuario autenticado` y ya podemos ejecu
     `authorized_keys` sirve para verificar la identidad del usuario.
     
      Son problemas distintos y SSH los resuelve por separado.
+
+---
+
+## 📜 Créditos y Licencia
+
+* **Validación del Material:** Contenidos y prácticas validados por **Paco Cuadrado `fcuadradoa01@educantabria.es`**.
+* **Licencia:** Licencia Creative Commons Atribución 4.0 Internacional ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)).
+!!! note "CC BY 4.0"
+    *Se permite compartir, copiar, redistribuir, adaptar y transformar este material para cualquier propósito (incluso comercial), siempre que se reconozca y mencione adecuadamente la autoría original.*
