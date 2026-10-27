@@ -131,6 +131,7 @@ Ahora cliente y servidor crean una clave secreta compartida (`simétrica`).
 ## 5. Se crea el canal cifrado
 
 Desde ese momento **TODO** viaja cifrado:
+
 - 👤 Identidad del usuario.
 - 🔑 Credenciales de acceso.
 - ⌨️ Comandos enviados al servidor.
