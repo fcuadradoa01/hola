@@ -14,10 +14,42 @@
 .md-typeset h1 {
   font-weight: 800;
   letter-spacing: -0.03em;
+  margin-bottom: 1.2rem;
+  /* Opcional: un borde inferior muy sutil para destacar el título de la página */
+  border-bottom: 2px solid var(--md-primary-fg-color--light);
+  padding-bottom: 0.4rem;
 }
 
 .md-typeset h2 {
   font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 2.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.md-typeset h3 {
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* --- VIÑETAS Y LISTAS (Adiós al efecto "muro de texto") --- */
+.md-typeset ul, 
+.md-typeset ol {
+  margin-bottom: 1.2rem;
+}
+
+/* Da un pequeño respiro vertical entre elemento y elemento de la lista */
+.md-typeset li {
+  margin-bottom: 0.4rem; 
+  line-height: 1.6;
+}
+
+/* Controla el espaciado de listas anidadas */
+.md-typeset li ul, 
+.md-typeset li ol {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
 .md-tabs__link {
