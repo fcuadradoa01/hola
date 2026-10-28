@@ -18,7 +18,7 @@
 
     [Abrir documento](OpenAI-2-tecnicas-medidas.md)
 
--   :material-api: **Guía Didáctica: ¿Cómo Funciona TOTP (Time-based One-Time Password)?**
+-   :material-lock: **Guía Didáctica: ¿Cómo Funciona TOTP (Time-based One-Time Password)?**
 
     ---
 

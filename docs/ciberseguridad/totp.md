@@ -26,7 +26,8 @@ El núcleo de TOTP se basa en la **criptografía simétrica**: tanto el cliente 
 * **¿Cómo se transmite inicialmente?**
   El servidor suele codificar este secreto en formato **Base32** y mostrarlo mediante un **código QR**. 
 
-> **Punto Crítico de Seguridad:** El secreto solo se transmite **una vez** (durante el escaneo del QR). Si un atacante intercepta este QR, podrá generar los mismos códigos que tu teléfono de forma indefinida.
+!!! info "Punto Crítico de Seguridad"
+    El secreto solo se transmite **una vez** (durante el escaneo del QR). Si un atacante intercepta este QR, podrá generar los mismos códigos que tu teléfono de forma indefinida.
 
 ---
 
@@ -42,8 +43,6 @@ El cálculo lo hacen los dos por separado:
 
 - En la **nube**: El servidor de la web (el de Google, GitHub, tu banco...) hace exactamente el mismo cálculo usando su propio reloj y el secreto que tiene guardado en su base de datos.
 
-El servidor nunca te tiene que enviar el código por internet.
-
 !!! info "reloj"
     La sincronización de los relojes es la clave absoluta de todo el sistema, aunque un desfase de segundo no es relevante.
 
@@ -51,7 +50,10 @@ El servidor nunca te tiene que enviar el código por internet.
 
 ## 3. Autonomía Offline: ¿Por qué no requiere Internet?
 
-Una duda común entre los usuarios es cómo la aplicación móvil genera el código correcto sin tener conexión a datos o Wi-Fi.
+El servidor nunca te tiene que enviar el código por internet.
+
+!!! tip "duda"
+    Común entre los usuarios es cómo la aplicación móvil genera el código correcto sin tener conexión a datos o Wi-Fi.
 
 * **Sincronización Determinista:** El algoritmo es completamente **determinista**. Si dos dispositivos tienen el mismo secreto `($K$)` y la misma hora `($T$)`, aplicar el algoritmo `HMAC` arrojará exactamente el mismo resultado.
 * **Uso del Reloj Interno:** El smartphone utiliza su reloj interno para calcular `$T$`. Como la hora UNIX es universal y UTC (no se ve afectada por husos horarios ni cambio de hora de verano), ambos sistemas siempre calculan la misma variable `$T$`.
@@ -104,3 +106,10 @@ Aunque TOTP es una mejora considerable respecto a las contraseñas simples y SMS
 * **Fundamento:** TOTP = Secreto Criptográfico + Tiempo Unix actual.
 * **Ventaja clave:** Funciona offline y no depende de la red móvil (a diferencia del SMS).
 * **Principal límite:** Es susceptible al phishing interactivo, motivo por el cual la industria migra progresivamente hacia **Passkeys/FIDO2**.
+
+## 📜 Créditos y Licencia
+
+* **Validación del Material:** Contenidos y prácticas validados por **Paco Cuadrado `fcuadradoa01@educantabria.es`**.
+* **Licencia:** Licencia Creative Commons Atribución 4.0 Internacional ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)).
+!!! note "CC BY 4.0"
+    *Se permite compartir, copiar, redistribuir, adaptar y transformar este material para cualquier propósito (incluso comercial), siempre que se reconozca y mencione adecuadamente la autoría original.*
