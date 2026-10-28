@@ -18,4 +18,13 @@
 
     [Abrir documento](OpenAI-2-tecnicas-medidas.md)
 
+-   :material-api: **Guía Didáctica: ¿Cómo Funciona TOTP (Time-based One-Time Password)?**
+
+    ---
+
+    Estándar de autenticación de doble factor (2FA) utilizado por aplicaciones como Google Authenticator, Microsoft Authenticator o Authy.
+
+    [Abrir documento](totp.md)
+
+
 </div>

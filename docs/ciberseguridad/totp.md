@@ -1,4 +1,16 @@
-# Guía Didáctica: ¿Cómo Funciona TOTP (Time-based One-Time Password)?
+---
+title: "Guía Didáctica: ¿Cómo Funciona TOTP (Time-based One-Time Password)?"
+tags:
+  - autenticación
+  - 2FA
+  - doble factor
+  - TOTP
+  - Google Authenticador
+  - Microsoft Authenticador
+level: basico
+---
+
+# ¿Cómo Funciona TOTP (Time-based One-Time Password)?
 
 TOTP es el estándar de autenticación de doble factor (2FA) utilizado por aplicaciones como Google Authenticator, Microsoft Authenticator o Authy. Está definido en el estándar **RFC 6238** y permite generar códigos numéricos temporales (normalmente de 6 dígitos) que cambian cada 30 segundos.
 
@@ -18,32 +30,22 @@ El núcleo de TOTP se basa en la **criptografía simétrica**: tanto el cliente 
 
 ---
 
-## 2. El Algoritmo Matemático: HMAC-SHA1 y Factor Tiempo
+## 2. El Algoritmo Matemático y Factor Tiempo
 
 TOTP es una extensión de **HOTP** (HMAC-based One-Time Password), pero reemplaza un contador incremental por un **contador basado en el tiempo**.
 
-### A. La Variable de Tiempo ($T$)
-En lugar de enviar la hora exacta, el algoritmo convierte la hora UNIX (*Epoch Timestamp*, segundos transcurridos desde el 1 de enero de 1970) en un bloque discreto de tiempo de 30 segundos:
+La app toma dos ingredientes: la clave secreta que compartiste al principio y el bloque de tiempo actual (los 30 segundos en los que estamos).
 
-$$T = \left\lfloor \frac{\text{Tiempo UNIX Actual}}{\text{Paso de Tiempo (30s)}} \right\rfloor$$
+El cálculo lo hacen los dos por separado:
 
-* Si el tiempo actual son `1700000000` segundos:
-  $$T = \left\lfloor \frac{1700000000}{30} \right\rfloor = 56666666$$
-* Este valor $T$ no cambia durante un intervalo entero de 30 segundos.
+- En tu **móvil**: La app _Google Authenticator_ (o similar) calcula el código usando su reloj y el secreto.
 
-### B. El Cifrado (HMAC-SHA1)
-Se aplica un código de autenticación de mensajes basado en hash (**HMAC**) combinando la Clave Secreta ($K$) y el contador de tiempo ($T$):
+- En la **nube**: El servidor de la web (el de Google, GitHub, tu banco...) hace exactamente el mismo cálculo usando su propio reloj y el secreto que tiene guardado en su base de datos.
 
-$$\text{HMAC-SHA1}(K, T) \longrightarrow \text{Hash de 160 bits (20 bytes)}$$
+El servidor nunca te tiene que enviar el código por internet.
 
-### C. Truncamiento Dinámico (Dynamic Truncation)
-Como un hash de 20 bytes es inviable para que un usuario lo escriba, se extrae un subconjunto de datos:
-1. Se toma el último nibble (4 bits) del hash para usarlo como **offset** (índice de inicio).
-2. Se leen 4 bytes a partir de esa posición.
-3. Se aplica una máscara lógica `AND` para eliminar el bit de signo (evitando números negativos).
-4. Se aplica la operación módulo ($10^6$) para obtener un número de 6 dígitos:
-
-$$\text{Código TOTP} = (\text{Valor de 31 bits}) \pmod{10^6}$$
+!!! info "reloj"
+    La sincronización de los relojes es la clave absoluta de todo el sistema, aunque un desfase de segundo no es relevante.
 
 ---
 
@@ -51,8 +53,8 @@ $$\text{Código TOTP} = (\text{Valor de 31 bits}) \pmod{10^6}$$
 
 Una duda común entre los usuarios es cómo la aplicación móvil genera el código correcto sin tener conexión a datos o Wi-Fi.
 
-* **Sincronización Determinista:** El algoritmo es completamente **determinista**. Si dos dispositivos tienen el mismo secreto ($K$) y la misma hora ($T$), aplicar el algoritmo HMAC arrojará exactamente el mismo resultado.
-* **Uso del Reloj Interno:** El smartphone utiliza su reloj interno para calcular $T$. Como la hora UNIX es universal y UTC (no se ve afectada por husos horarios ni cambio de hora de verano), ambos sistemas siempre calculan la misma variable $T$.
+* **Sincronización Determinista:** El algoritmo es completamente **determinista**. Si dos dispositivos tienen el mismo secreto `($K$)` y la misma hora `($T$)`, aplicar el algoritmo `HMAC` arrojará exactamente el mismo resultado.
+* **Uso del Reloj Interno:** El smartphone utiliza su reloj interno para calcular `$T$`. Como la hora UNIX es universal y UTC (no se ve afectada por husos horarios ni cambio de hora de verano), ambos sistemas siempre calculan la misma variable `$T$`.
 
 ---
 
@@ -60,13 +62,12 @@ Una duda común entre los usuarios es cómo la aplicación móvil genera el cód
 
 A pesar de la precisión de los relojes modernos, puede existir cierta desincronización (*clock skew*) entre el móvil y el servidor.
 
-* **Ventana de Validación (Window Size):**
-  Para mitigar este desfase, el servidor no valida únicamente el código del intervalo actual ($T$). Comprueba también intervalos adyacentes:
+* **Ventana de tolerancia:**
+      
+      - Para mitigar este desfase, lo habitual es que el servidor compruebe no solo el intervalo de tiempo actual, sino también el intervalo anterior y el posterior (es decir, $-1$, $0$ y $+1$).
   
-  $$\text{Intervalos evaluados} = \{T - 1, T, T + 1\}$$
+      - Traducido a los bloques de 30 segundos, significa que el servidor acepta códigos en una franja de 90 segundos en total
 
-* **Margen de Tolerancia:**
-  Una ventana de $\pm 1$ otorga un margen de $\pm 30$ segundos. Si marcas el código justo cuando caduca, el servidor aún lo considerará válido si cae dentro del rango $T-1$.
 * **Estrategia anti-replay:** Una vez que un código en un intervalo específico ($T$) ha sido aceptado por el servidor, este se marca como consumido para evitar ataques de retransmisión (*replay attacks*) dentro de los mismos 30 segundos.
 
 ---
