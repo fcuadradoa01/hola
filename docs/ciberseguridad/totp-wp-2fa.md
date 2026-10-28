@@ -86,44 +86,36 @@ El sistema divide la información en dos componentes independientes:
 ## Resumen
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                      MÓVIL DEL USUARIO                  │
-│   App 2FA (Google/MS Auth) ──> Guarda el Secreto        │
+│                      MÓVIL DEL USUARIO               │
+│   App 2FA (Google/MS Auth) ──> Guarda el Secreto     │
 └─────────────────────────────────────────────────────────┘
                                 ▲
                                 │ (Validación en login)
                                 ▼
 ┌─────────────────────────────────────────────────────────┐
-│                    SERVIDOR WORDPRESS                   │
-│                                                         │
-│  📦 BASE DE DATOS  ──> Guarda los Secretos CIFRADOS     │
-│             ▲                                           │
-│             │ (Requiere para descifrar)                 │
-│             ▼                                           │
-│  🔑 wp-config.php  ──> Guarda la LLAVE MAESTRA          │
+│                    SERVIDOR WORDPRESS                │
+│                                                      │
+│  📦 BASE DE DATOS  ──> Guarda los Secretos CIFRADOS │
+│             ▲                                        │
+│             │ (Requiere para descifrar)              │
+│             ▼                                        │
+│  🔑 wp-config.php  ──> Guarda la LLAVE MAESTRA       │
 └─────────────────────────────────────────────────────────┘
 ```
 
-¿Qué sabe WordPress?
-→ El secreto TOTP del usuario.
+¿Qué sabe WordPress? → El secreto TOTP del usuario.
 
-¿Qué sabe el móvil?
-→ El mismo secreto TOTP.
+¿Qué sabe el móvil? → El mismo secreto TOTP.
 
-¿Quién genera el código?
-→ Ambos, de forma independiente.
+¿Quién genera el código? → Ambos, de forma independiente.
 
-¿Viaja el código por Internet?
-→ No.
+¿Viaja el código por Internet? → No.
 
-¿Viaja el secreto por Internet en cada login?
-→ No.
+¿Viaja el secreto por Internet en cada login? → No.
 
-¿Puede un robo de contraseña saltarse el 2FA?
-→ No.
+¿Puede un robo de contraseña saltarse el 2FA? → No.
 
-¿Puede un compromiso total del servidor afectar al 2FA?
-→ Sí.
-
+¿Puede un compromiso total del servidor afectar al 2FA? → Sí.
 
 !!! abstract "Resumen"
     TOTP mejora muchísimo la seguridad frente al robo de credenciales, pero sigue basándose en un secreto compartido entre el usuario y el servidor. Precisamente para eliminar esa dependencia nacieron `FIDO2` y las `Passkeys`.
