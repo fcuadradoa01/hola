@@ -2,8 +2,6 @@
 
 TOTP es el estándar de autenticación de doble factor (2FA) utilizado por aplicaciones como Google Authenticator, Microsoft Authenticator o Authy. Está definido en el estándar **RFC 6238** y permite generar códigos numéricos temporales (normalmente de 6 dígitos) que cambian cada 30 segundos.
 
-A continuación, analizaremos detalladamente su funcionamiento técnico, matemática subyacente, seguridad y comparativa frente a otras alternativas.
-
 ---
 
 ## 1. El "Secreto Compartido" (Shared Secret) y su Transmisión
@@ -14,11 +12,7 @@ El núcleo de TOTP se basa en la **criptografía simétrica**: tanto el cliente 
   Es una cadena de caracteres aleatorios generada por el servidor al momento de configurar la autenticación en dos pasos (por ejemplo, `JBSWY3DPEHPK3PXP`).
   
 * **¿Cómo se transmite inicialmente?**
-  El servidor suele codificar este secreto en formato **Base32** y mostrarlo mediante un **código QR**. La URL contenida en el código QR sigue un formato estándar (`keyuri`):
-  
-  $$\text{otpauth://totp/Servicio:usuario@email.com?secret=JBSWY3DPEHPK3PXP\&issuer=Servicio}$$
-
-* **Analogía:** Imagina que tú y un amigo acuerdan un libro de claves secreto en persona. A partir de ese momento, ambos pueden enviarse mensajes cifrados basándose en la página y renglón correspondientes a cada minuto, sin necesidad de hablar previamente.
+  El servidor suele codificar este secreto en formato **Base32** y mostrarlo mediante un **código QR**. 
 
 > **Punto Crítico de Seguridad:** El secreto solo se transmite **una vez** (durante el escaneo del QR). Si un atacante intercepta este QR, podrá generar los mismos códigos que tu teléfono de forma indefinida.
 
