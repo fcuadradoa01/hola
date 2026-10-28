@@ -13,6 +13,10 @@ level: basico
 
 # Caso práctico: TOTP en WordPress con WP 2FA
 
+_WP 2FA_ es uno de los **plugins de seguridad** más populares para WordPress.
+
+Su función principal es añadir una **capa extra de protección** (Autenticación de Doble Factor o 2FA), obligando a los usuarios a introducir un código temporal generado por una aplicación móvil (como Google Authenticator) o recibirlo por correo electrónico además de su contraseña habitual.
+
 ## 1. ¿Qué ocurre cuando un usuario activa el 2FA?
 
 Cuando activa TOTP desde WP 2FA:
