@@ -26,5 +26,14 @@
 
     [Abrir documento](totp.md)
 
+-   :material-lock: **Caso práctico: TOTP en WordPress con WP 2FA**
+
+    ---
+
+    Estándar de autenticación de doble factor (2FA) utilizado por aplicaciones como Google Authenticator, Microsoft Authenticator o Authy.
+
+    [Abrir documento](totp-wp-2fa.md)
+
+
 
 </div>
