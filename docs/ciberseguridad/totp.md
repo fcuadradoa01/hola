@@ -99,6 +99,10 @@ Aunque TOTP es una mejora considerable respecto a las contraseñas simples y SMS
 | **Intervención Humana** | ❌ Requiere leer e introducir 6 dígitos. | ✅ Flujo transparente con biometría (FaceID, huella). |
 | **Ataque AiTM** | ❌ Vulnerable a proxying en tiempo real. | ✅ Inmune (el navegador valida el origen del dominio). |
 
+!!! info "AiTM"
+    AiTM (Adversary in the Middle), una evolución del clásico Man-in-the-Middle.
+    Imagina que un atacante monta una página de inicio de sesión **falsa** que en realidad funciona como un proxy en tiempo real. Cuando el usuario introduce: _Usuario_, _Contraseña_, _Código TOTP_, el atacante los reenvía instantáneamente al servicio legítimo y suplante identidad.
+
 ---
 
 ## Resumen Final para Alumnos

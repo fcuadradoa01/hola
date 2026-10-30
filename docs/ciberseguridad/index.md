@@ -34,6 +34,12 @@
 
     [Abrir documento](totp-wp-2fa.md)
 
+-   :material-lock: **Guía Didáctica: FIDO2 - autenticación resistente al phishing**
 
+    ---
+
+    Estándar de autenticación que permite iniciar sesión sin depender únicamente de contraseñas.
+
+    [Abrir documento](fido2.md)
 
 </div>
