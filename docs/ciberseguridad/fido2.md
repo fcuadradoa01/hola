@@ -6,7 +6,9 @@ tags:
   - doble factor
   - FIDO2
   - phising
-  - 
+  - WebAuthn
+  - FaceID
+  - TOTP
 level: basico
 ---
 
@@ -19,7 +21,7 @@ level: basico
 Ha sido desarrollado por la _FIDO Alliance_ y es utilizado por servicios como Microsoft 365, Google, GitHub, Amazon o AWS.
 
 !!! info "phising"
-   Técnica de ingeniería social en la que un atacante suplanta la identidad de una entidad legítima para engañar a la víctima.
+    Técnica de **ingeniería social** en la que un atacante suplanta la identidad de una entidad legítima para engañar a la víctima.
 
 !!! info "FIDO Alliance"
     Asociación industrial abierta dedicada a crear estándares de autenticación globalmente interoperables. Su objetivo es eliminar el uso de contraseñas tradicionales reemplazándolas por métodos seguros basados en criptografía de llave pública, como la biometría o las llaves físicas de seguridad.
@@ -28,10 +30,10 @@ Ha sido desarrollado por la _FIDO Alliance_ y es utilizado por servicios como Mi
 
 Las contraseñas presentan varios inconvenientes:
 
-- Se pueden adivinar.
-- Se pueden reutilizar en varios servicios.
-- Se pueden filtrar en una brecha de seguridad.
-- Se pueden robar mediante phishing.
+- 🎯 Se pueden adivinar.
+- 🔁 Se pueden reutilizar en varios servicios.
+- 📂 Se pueden filtrar en una brecha de seguridad.
+- 🎣 Se pueden robar mediante phishing.
 
 Por eso se empezaron a utilizar segundos factores como:
 
@@ -48,11 +50,11 @@ FIDO2 utiliza criptografía de clave pública.
 
 Cuando un usuario registra un dispositivo:
 
-Se genera un par de claves: `Clave privada` + `Clave pública`
+- Se genera un par de claves: `Clave privada` + `Clave pública`
 
-La clave pública se envía al servidor.
+- La `clave pública` se envía al servidor.
 
-La clave privada nunca abandona el dispositivo del usuario.
+- La `clave privada` **nunca** abandona el dispositivo del usuario.
 
 ## Inicio de sesión con FIDO2
 
@@ -91,7 +93,7 @@ La clave privada suele almacenarse de forma segura entre otros:
 !!! info "Windows Hello"
     Es un sistema de autenticación biométrica y basada en PIN integrado en Windows. En nuestro caso, actúa de forma nativa como un autenticador FIDO2, utilizando la biometría o el PIN del dispositivo como credenciales criptográficas conformes con este estándar abierto.
 
-!!! tip "TPM"
+!!! info "TPM"
     El chip TPM (Trusted Platform Module -Módulo de Plataforma Confiable) es un **componente físico integrado en la placa base** del equipo, por lo que a nivel de hardware es único y compartido por toda la máquina.
 
     Sin embargo, sí puede ser utilizado por diferentes usuarios que inicien sesión en el mismo ordenador, pero bajo un principio estricto de aislamiento criptográfico por cuenta.
@@ -122,9 +124,9 @@ Si el dominio es falso, la autenticación no funcionará.
 
 Desglosémoslo de forma técnica pero directa:
 
-- WebAuthn (Web Authentication API): Es el estándar oficial (de la W3C) integrado en los navegadores web. Es la interfaz que permite que una página web se comunique con tu sistema operativo para registrarte o iniciar sesión usando criptografía en lugar de contraseñas.
+- **WebAuthn (Web Authentication API)**: Es el estándar oficial (de la W3C) integrado en los navegadores web. Es la interfaz que permite que una página web se comunique con tu sistema operativo para registrarte o iniciar sesión usando criptografía en lugar de contraseñas.
 
-- FIDO2: Es el marco global creado por la FIDO Alliance que engloba a WebAuthn y añade el protocolo CTAP (Client-to-Authenticator Protocol). Este último es el que permite que un dispositivo o llave de seguridad (como tu móvil, una YubiKey o el chip TPM de tu PC) se comunique de forma segura con el navegador.
+- **FIDO2**: Es el marco global creado por la FIDO Alliance que engloba a WebAuthn y añade el protocolo CTAP (Client-to-Authenticator Protocol). Este último es el que permite que un dispositivo o llave de seguridad (como tu móvil, una YubiKey o el chip TPM de tu PC) se comunique de forma segura con el navegador.
 
 !!! tip "ejemplos cotidianos que probablemente ya utilices o conozcas"
     Al acceder a la app de tu banco, a la web de Amazon, eBay o Google desde el navegador móvil usando Touch ID, Face ID o la huella de Android.
