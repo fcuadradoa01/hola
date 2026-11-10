@@ -109,6 +109,8 @@ add chain=dstnat in-interface-list=WAN protocol=tcp dst-port=8080 action=dst-nat
 !!! abstract "acceso a internet"
     Con esto conseguimos que tanto los equipos de **LAN** como los de la **DMZ** tengan salida a internet a traves de nuestro rúter.
 
+!!! warning "firewall"
+    Pero queda pendiente permitirlo tambien a nivel de firewall.
 ---
 
 ## Paso 4: Control de Acceso y Gestión del Router (Cadena `INPUT`)
@@ -189,14 +191,20 @@ add chain=forward action=accept in-interface-list=WAN out-interface-list=LAN dst
 # 3. Tráfico público hacia el servidor WordPress en la DMZ
 add chain=forward action=accept in-interface-list=WAN out-interface-list=DMZ dst-address=192.168.11.11 protocol=tcp dst-port=80 comment="Forward: WAN a WordPress DMZ"
 
-# 4. Salida a Internet desde LAN y DMZ
-add chain=forward action=accept in-interface-list=LAN out-interface-list=WAN comment="LAN a WAN: Permitida"
-add chain=forward action=accept in-interface-list=DMZ out-interface-list=WAN comment="DMZ a WAN: Permitida (actualizaciones)"
 
-# 5. Aislamiento de Seguridad: Prohibir cualquier tráfico originado en la DMZ hacia la LAN
+# 4. Permitimos conexiones nuevas
+add chain=forward action=accept connection-state=new
+
+# 5. Acceso NAT internet LAN
+add chain=forward action=accept connection-nat-state=srcnat src-address=192.168.7.0/24 out-interface=WAN comment="LAN a WAN: NAT Permitida"
+
+# 6. Acceso NAT internet DMZ
+add chain=forward action=accept connection-nat-state=srcnat in-interface-list=DMZ out-interface=WAN comment="DMZ a WAN: NAT Permitida (actualizaciones)"
+
+# 7. Aislamiento de Seguridad: Prohibir cualquier tráfico originado en la DMZ hacia la LAN
 add chain=forward action=drop in-interface-list=DMZ out-interface-list=LAN comment="Aislamiento: Bloquear DMZ hacia LAN"
 
-# 6. Política de Cierre (Default Deny en Forward)
+# 8. Política de Cierre (Default Deny en Forward)
 add chain=forward action=drop comment="Default Deny Forward"
 ```
 
