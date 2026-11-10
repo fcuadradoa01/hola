@@ -191,9 +191,9 @@ add chain=forward action=accept in-interface-list=WAN out-interface-list=LAN dst
 # 3. Tráfico público hacia el servidor WordPress en la DMZ
 add chain=forward action=accept in-interface-list=WAN out-interface-list=DMZ dst-address=192.168.11.11 protocol=tcp dst-port=80 comment="Forward: WAN a WordPress DMZ"
 
-
-# 4. Permitimos conexiones nuevas
-add chain=forward action=accept connection-state=new
+# 4. Permitimos conexiones nuevas LAN y DMZ
+add chain=forward action=accept connection-state=new src-address=192.168.10.0/24 out-interface=WAN
+add chain=forward action=accept connection-state=new src-address=192.168.11.0/24 out-interface=WAN
 
 # 5. Acceso NAT internet LAN
 add chain=forward action=accept connection-nat-state=srcnat src-address=192.168.7.0/24 out-interface=WAN comment="LAN a WAN: NAT Permitida"
