@@ -196,7 +196,7 @@ add chain=forward action=accept connection-state=new src-address=192.168.10.0/24
 add chain=forward action=accept connection-state=new src-address=192.168.11.0/24 out-interface=WAN
 
 # 5. Acceso NAT internet LAN
-add chain=forward action=accept connection-nat-state=srcnat src-address=192.168.7.0/24 out-interface=WAN comment="LAN a WAN: NAT Permitida"
+add chain=forward action=accept connection-nat-state=srcnat src-address=192.168.10.0/24 out-interface=WAN comment="LAN a WAN: NAT Permitida"
 
 # 6. Acceso NAT internet DMZ
 add chain=forward action=accept connection-nat-state=srcnat in-interface-list=DMZ out-interface=WAN comment="DMZ a WAN: NAT Permitida (actualizaciones)"
