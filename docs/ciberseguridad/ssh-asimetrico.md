@@ -8,13 +8,17 @@ tags:
   - clave privada
 level: basico
 ---
-# 🛡️ Laboratorio: Acceso Seguro a Servidores Linux mediante SSH y Claves Asimétricas
+# Laboratorio: Acceso Seguro a Servidores Linux mediante SSH y Claves Asimétricas
 
 ## 🎯 Objetivos de Aprendizaje
 Al finalizar esta práctica, serás capaz de:
+
 1. Comprender la diferencia fundamental entre la autenticación tradicional por contraseña y la autenticación basada en criptografía asimétrica (clave pública / clave privada).
+
 2. Generar un par de claves criptográficas modernas en tu equipo cliente.
+
 3. Configurar un servidor **Ubuntu Server** para permitir el acceso seguro mediante claves sin depender de contraseñas.
+
 4. Identificar y gestionar los principales archivos de configuración y seguridad de SSH, tanto en el cliente como en el servidor.
 
 ---
@@ -33,7 +37,8 @@ La **autenticación asimétrica** soluciona este problema dividiendo la credenci
 | **Visibilidad** | **Secreta.** Nunca se comparte ni se envía por red. | **Pública.** Puede copiarse o enviarse sin compromiso. |
 | **Función** | Demuestra tu identidad resolviendo un reto matemático. | Verifica que posees la clave privada correspondiente. |
 
-> 💡 **¿Por qué es más seguro?** Porque tu clave privada **nunca viaja por la red** durante el inicio de sesión. El servidor utiliza tu clave pública para enviarte un mensaje cifrado; solo tu equipo, al poseer la clave privada, puede descifrarlo y demostrar quién eres.
+!!! tip "¿Por qué es más seguro?"
+    Porque tu clave privada **nunca viaja por la red** durante el inicio de sesión. El servidor utiliza tu clave pública para enviarte un mensaje cifrado; solo tu equipo, al poseer la clave privada, puede descifrarlo y demostrar quién eres.
 
 ---
 
@@ -49,13 +54,18 @@ La **autenticación asimétrica** soluciona este problema dividiendo la credenci
 En tu equipo local, abre una terminal y ejecuta el siguiente comando para crear tus claves utilizando el algoritmo **Ed25519** (más rápido y seguro que el antiguo RSA):
 
 ```bash
-ssh-keygen -t ed25519 -C "alumno@laboratorio"
+ssh-keygen -t ed25519 -C "fcuadradoa01@ip_del_servidor"
 ```
 
 1. **Ruta de guardado:** Pulsa `Enter` para aceptar la ubicación por defecto (`~/.ssh/id_ed25519`).
 2. **Frase de contraseña (*Passphrase*):** Puedes escribir una contraseña extra para proteger el archivo de tu clave privada en tu disco duro, o pulsar `Enter` dos veces para dejarla sin frase de paso.
 
+!!! tip "rsa vs ed25519"
+    Usa siempre Ed25519 por defecto. Es un algoritmo moderno basado en curvas elípticas que ofrece un rendimiento superior, y proporciona un nivel de seguridad altísimo (equivalente a una clave RSA de 3000 bits) utilizando claves extremadamente cortas. RSA solo debe usarse hoy en día si estás obligado a dar soporte a sistemas o dispositivos muy antiguos que no actualizan su software desde hace una década.
+
+
 **Comprobación:** Verifica que se han creado los dos archivos en tu carpeta oculta `.ssh`:
+
 ```bash
 ls -la ~/.ssh/
 ```
@@ -68,8 +78,9 @@ Ahora debemos instalar el "candado" (tu clave pública) en el servidor Ubuntu. P
 
 #### Opción A: Si estás en Linux o macOS (Método automático)
 Utiliza la herramienta dedicada para copiar la clave:
+
 ```bash
-ssh-copy-id usuario@ip_del_servidor
+ssh-copy-id fcuadradoa01@ip_del_servidor
 ```
 
 #### Opción B: Si estás en Windows o quieres hacerlo manualmente
@@ -89,7 +100,8 @@ ssh-copy-id usuario@ip_del_servidor
    chmod 600 ~/.ssh/authorized_keys
    ```
 
-> ⚠️ **Nota crítica sobre permisos:** Linux es muy estricto con la seguridad de SSH. Si la carpeta `~/.ssh` no tiene permisos `700` o el archivo `authorized_keys` no tiene permisos `600`, el servidor ignorará tus claves por precaución.
+!!! warning "Nota crítica sobre permisos"
+    Linux es muy estricto con la seguridad de SSH. Si la carpeta `~/.ssh` no tiene permisos `700` o el archivo `authorized_keys` no tiene permisos `600`, el servidor ignorará tus claves por precaución.
 
 ---
 
@@ -108,11 +120,13 @@ Si todo está bien configurado, entrarás directamente a la terminal de Ubuntu *
 Recordar direcciones IP y usuarios es tedioso. Podemos crear un "alias" en nuestro equipo cliente.
 
 En tu **equipo local**, crea o edita el archivo `~/.ssh/config`:
+
 ```bash
 nano ~/.ssh/config
 ```
 
 Añade la siguiente estructura adaptada a tus datos:
+
 ```text
 Host ubuntu-lab
     HostName 192.168.1.50
@@ -121,10 +135,14 @@ Host ubuntu-lab
 ```
 
 Guarda los cambios (`Ctrl + O`, `Enter`) y sal (`Ctrl + X`). A partir de ahora, para conectarte solo tendrás que escribir:
+
 ```bash
 ssh ubuntu-lab
 ```
 
+!!! info "windows"
+    Si es el sistema operativo es Windows con el bloc de notas 😁
+ 
 ---
 
 ### Paso 5: Endurecer el servidor (Desactivar contraseñas)
@@ -163,8 +181,20 @@ Para dominar la administración de sistemas, debes saber qué función cumple ca
 
 ---
 
-## 📝 Cuestionario de Repaso para Entregar
+## 📝 Cuestionario de Repaso
 Responde brevemente a las siguientes cuestiones para validar tu práctica:
+
 1. Si formateas tu ordenador cliente y pierdes el archivo `id_ed25519`, pero conservas `id_ed25519.pub`, ¿podrás volver a conectarte al servidor? ¿Por qué?
+
 2. ¿Qué ocurre en el cliente si reinstalamos el sistema operativo del servidor Ubuntu desde cero (manteniendo la misma IP) e intentamos conectarnos por SSH? ¿Qué archivo local interviene y por qué lanza una advertencia?
+
 3. Ejecuta el comando `sudo tail -n 10 /var/log/auth.log` en tu servidor Ubuntu tras iniciar sesión y pega la línea donde se evidencia que entraste usando `publickey`.
+
+---
+
+## 📜 Créditos y Licencia
+
+* **Validación del Material:** Contenidos y prácticas validados por **Paco Cuadrado `fcuadradoa01@educantabria.es`**.
+* **Licencia:** Licencia Creative Commons Atribución 4.0 Internacional ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)).
+!!! note "CC BY 4.0"
+    *Se permite compartir, copiar, redistribuir, adaptar y transformar este material para cualquier propósito (incluso comercial), siempre que se reconozca y mencione adecuadamente la autoría original.*
