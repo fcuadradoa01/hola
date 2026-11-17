@@ -42,4 +42,11 @@
 
     [Abrir documento](fido2.md)
 
+-   :material-server-security: **Laboratorio: Acceso ssh mediante claves asimétricas**
+
+    ---
+
+    Acceso Seguro a Servidores Unix/Linux mediante SSH y Claves Asimétricas.
+
+    [Abrir documento](ssh-asimetrico.md)
 </div>

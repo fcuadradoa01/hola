@@ -1,4 +1,14 @@
-# 🛡️ Laboratorio Práctico: Acceso Seguro a Servidores Linux mediante SSH y Claves Asimétricas
+---
+title: "Laboratorio: Acceso ssh mediante claves asimétricas"
+tags:
+  - autenticación
+  - ssh
+  - rsa
+  - clave publica
+  - clave privada
+level: basico
+---
+# 🛡️ Laboratorio: Acceso Seguro a Servidores Linux mediante SSH y Claves Asimétricas
 
 ## 🎯 Objetivos de Aprendizaje
 Al finalizar esta práctica, serás capaz de:
